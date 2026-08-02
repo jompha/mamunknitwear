@@ -58,11 +58,6 @@ const jsonLd = [
     secondaryCtaHref="/about-us-2/"
     image={heroImage}
     imageAlt="Exterior view of the Mamun Knitwear Ltd. factory building"
-    chips={[
-      { label: '100% Export Oriented', icon: 'globe' },
-      { label: 'BSCI Â· OEKO-TEX Â· WRAP Certified', icon: 'shield-check' },
-      { label: 'Est. 2013 Â· Gazipur, Bangladesh', icon: 'map-pin' },
-    ]}
   />
 
   <section class="intro section">
@@ -188,6 +183,28 @@ const jsonLd = [
           ))
         }
       </ul>
+    </div>
+  </section>
+
+  <section class="video section section--alt">
+    <div class="container">
+      <div class="heading-block">
+        <span class="eyebrow">Company profile</span>
+        <h2>Watch our company profile</h2>
+        <p class="heading-block__lead">
+          A look inside our factory — knitting, printing, embroidery and sewing under one roof.
+        </p>
+      </div>
+      <div class="video__frame">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/ctGUUf4bGCU"
+          title="Mamun Knitwear Ltd. company profile video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          loading="lazy"></iframe>
+      </div>
     </div>
   </section>
 
@@ -409,21 +426,15 @@ const jsonLd = [
     }
   }
 
-  @media (min-width: 960px) {
-    .certs__grid {
-      grid-template-columns: repeat(8, 1fr);
-    }
-  }
-
   .certs__item {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 84px;
+    min-height: 104px;
     background: var(--color-white);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    padding: var(--space-4);
+    padding: var(--space-5);
     transition:
       border-color var(--transition),
       box-shadow var(--transition),
@@ -437,7 +448,7 @@ const jsonLd = [
   }
 
   .certs__item img {
-    max-height: 48px;
+    max-height: 64px;
     width: auto;
     object-fit: contain;
     transition: transform var(--transition-slow);
@@ -445,5 +456,29 @@ const jsonLd = [
 
   .certs__item:hover img {
     transform: scale(1.12);
+  }
+
+  .video {
+    background: var(--color-primary-soft);
+  }
+
+  .video__frame {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    margin-inline: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background: #000;
+  }
+
+  .video__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 </style>

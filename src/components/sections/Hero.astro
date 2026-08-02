@@ -3,11 +3,6 @@ import type { ImageMetadata } from 'astro';
 import { withBase } from '../../utils/paths';
 import Icon from '../common/Icon.astro';
 
-interface Chip {
-  label: string;
-  icon?: string;
-}
-
 interface Props {
   title: string;
   text: string;
@@ -20,7 +15,6 @@ interface Props {
   secondaryCtaHref?: string;
   ctaIcon?: string;
   ctaDownload?: boolean;
-  chips?: Chip[];
 }
 
 const {
@@ -30,12 +24,11 @@ const {
   ctaHref,
   image,
   imageAlt = '',
-  eyebrow = 'Knit Garments Manufacturer · Gazipur, Bangladesh',
+  eyebrow,
   secondaryCtaLabel,
   secondaryCtaHref = '/about-us-2/',
   ctaIcon = 'arrow-right',
   ctaDownload = false,
-  chips = [],
 } = Astro.props;
 ---
 
@@ -54,10 +47,14 @@ const {
     <div class="hero__overlay" aria-hidden="true"></div>
   </div>
   <div class="container hero__content">
-    <span class="hero__eyebrow">
-      <span class="hero__eyebrow-dot" aria-hidden="true"></span>
-      {eyebrow}
-    </span>
+    {
+      eyebrow && (
+        <span class="hero__eyebrow">
+          <span class="hero__eyebrow-dot" aria-hidden="true" />
+          {eyebrow}
+        </span>
+      )
+    }
     <h1 class="hero__title">{title}</h1>
     <p class="hero__text">{text}</p>
     <div class="hero__actions">
@@ -73,18 +70,7 @@ const {
         )
       }
     </div>
-    {
-      chips.length > 0 && (
-        <ul class="hero__chips">
-          {chips.map((chip) => (
-            <li>
-              <Icon name={chip.icon ?? 'check-circle'} size={16} />
-              {chip.label}
-            </li>
-          ))}
-        </ul>
-      )
-    }
+    {/* chips removed to reduce hero congestion */}
   </div>
 </section>
 
@@ -174,33 +160,6 @@ const {
     display: flex;
     gap: var(--space-3);
     flex-wrap: wrap;
-    margin-bottom: var(--space-8);
-  }
-
-  .hero__chips {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-  }
-
-  .hero__chips li {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
-    color: rgb(255 255 255 / 0.92);
-    padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-full);
-    background: rgb(255 255 255 / 0.08);
-    border: 1px solid rgb(255 255 255 / 0.14);
-  }
-
-  .hero__chips svg {
-    color: var(--color-accent-bright);
   }
 
   @media (max-width: 639px) {
