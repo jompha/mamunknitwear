@@ -1,0 +1,163 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import FeaturesGrid from '../components/sections/FeaturesGrid.astro';
+import LogoStrip from '../components/sections/LogoStrip.astro';
+import RecentNews from '../components/sections/RecentNews.astro';
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+import { homeFeatures } from '../data/home';
+import { services } from '../data/services';
+import { clients } from '../data/logos';
+import heroImage from '../assets/images/hero-factory.jpg';
+
+const posts = (await getCollection('news')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: site.name,
+    description: site.description,
+    url: new URL(withBase('/'), Astro.site).toString(),
+    email: site.publicEmail,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.line1,
+      addressLocality: site.address.line2,
+      addressCountry: 'BD',
+    },
+    telephone: site.phone,
+    foundingDate: String(site.established),
+  },
+];
+---
+
+<BaseLayout title="Home" description={site.description} canonicalPath="/" jsonLd={jsonLd}>
+  <Hero
+    title="Manufacturing excellence in knit garments since 2013"
+    text={site.tagline}
+    ctaLabel="Discover our services"
+    ctaHref="/services/"
+    image={heroImage}
+    imageAlt="Exterior view of the Mamun Knitwear Ltd. factory building"
+  />
+
+  <FeaturesGrid title="Why choose us" lead={site.tagline} features={homeFeatures} />
+
+  <section class="services-preview section">
+    <div class="container">
+      <div class="heading-block">
+        <h2>What we do</h2>
+        <p class="heading-block__lead">
+          From yarn to finished garment — knitting, printing, embroidery and sewing under one roof.
+        </p>
+      </div>
+      <ul class="services-preview__grid">
+        {
+          services.map((service) => (
+            <li class="services-preview__card">
+              <a href={service.href}>
+                <img
+                  src={service.image.src}
+                  alt={service.imageAlt}
+                  width={service.image.width}
+                  height={service.image.height}
+                  loading="lazy"
+                />
+                <div class="services-preview__body">
+                  <h3>{service.title}</h3>
+                  <p>{service.summary}</p>
+                  <span class="services-preview__link">Learn more</span>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <LogoStrip title="Our trusted partners" items={clients} />
+
+  <RecentNews posts={posts} />
+</BaseLayout>
+
+<style>
+  .services-preview {
+    background: var(--color-page-header-bg);
+  }
+
+  .services-preview__grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .services-preview__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .services-preview__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .services-preview__card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition:
+      transform var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .services-preview__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .services-preview__card a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .services-preview__card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .services-preview__body {
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    flex: 1;
+  }
+
+  .services-preview__body h3 {
+    font-size: var(--fs-lg);
+    color: var(--color-heading);
+  }
+
+  .services-preview__body p {
+    font-size: var(--fs-sm);
+    flex: 1;
+  }
+
+  .services-preview__link {
+    color: var(--color-primary);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-sm);
+  }
+</style>

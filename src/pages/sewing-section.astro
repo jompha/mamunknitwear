@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+import PageHeader from '../components/sections/PageHeader.astro';
+import SectionHeading from '../components/sections/SectionHeading.astro';
+import StatCards from '../components/sections/StatCards.astro';
+import CtaSection from '../components/sections/CtaSection.astro';
+import { sewing } from '../data/sections';
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+import sewing01 from '../assets/images/sewing-01.jpg';
+import sewing02 from '../assets/images/sewing-02.jpg';
+import sewing03 from '../assets/images/sewing-03.jpg';
+import sewing04 from '../assets/images/sewing-04.jpg';
+
+const gallery = [
+  { src: sewing01, alt: 'Sewing operators working on production lines' },
+  { src: sewing02, alt: 'Rows of sewing machines in the production floor' },
+  { src: sewing03, alt: 'Garments in production at the sewing unit' },
+  { src: sewing04, alt: 'Quality inspection of finished garments' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Garment sewing and finishing',
+    name: sewing.title,
+    provider: { '@type': 'Organization', name: site.name },
+    url: new URL(withBase('/sewing-section/'), Astro.site).toString(),
+  },
+];
+---
+
+<BaseLayout
+  title="Sewing Section"
+  description="Mamun Knitwear Ltd. operates 18 sewing production lines with 23,000 sq. ft of floor space, an independent quality team and AQL 2.5 inspection."
+  canonicalPath="/sewing-section/"
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={[{ label: 'Sewing Section' }]} />
+  <PageHeader title="Sewing Section" lead={sewing.intro} />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading title="From fabric to finished garment" />
+      <div class="units">
+        {
+          sewing.units.map((unit) => (
+            <div class="unit">
+              <h3>{unit.title}</h3>
+              <p>{unit.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading title="Key figures" />
+      <StatCards stats={sewing.summary} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading title="Inside the sewing unit" />
+      <ul class="gallery">
+        {
+          gallery.map((item) => (
+            <li class="gallery__item">
+              <img
+                src={item.src.src}
+                alt={item.alt}
+                width={item.src.width}
+                height={item.src.height}
+                loading="lazy"
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaSection
+    title="Looking for a reliable sewing partner?"
+    text="Our production lines are ready for your orders."
+    ctaLabel="Contact us"
+    ctaHref="/contact-us/"
+  />
+</BaseLayout>
+
+<style>
+  .section--alt {
+    background: var(--color-page-header-bg);
+  }
+
+  .units {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .units {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .unit {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+  }
+
+  .unit h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: var(--fs-lg);
+    margin-bottom: var(--space-3);
+    color: var(--color-primary);
+  }
+
+  .gallery {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 639px) {
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .gallery__item img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+  }
+</style>

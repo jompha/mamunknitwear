@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+import PageHeader from '../components/sections/PageHeader.astro';
+import CtaSection from '../components/sections/CtaSection.astro';
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: `Career at ${site.name}`,
+    url: new URL(withBase('/jobs/'), Astro.site).toString(),
+  },
+];
+---
+
+<BaseLayout
+  title="Career"
+  description="Join the team at Mamun Knitwear Ltd. — a 100% export oriented knit garments manufacturer in Gazipur, Bangladesh."
+  canonicalPath="/jobs/"
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={[{ label: 'Career' }]} />
+  <PageHeader title="Career" lead="Build your career with Mamun Knitwear Ltd." />
+
+  <section class="section">
+    <div class="container">
+      <div class="heading-block">
+        <h2>Open positions</h2>
+        <p class="heading-block__lead">
+          We are always looking for talented and hardworking people. There are no open positions at
+          the moment, but we invite you to send your CV to our human resources team.
+        </p>
+      </div>
+
+      <div class="jobs-empty">
+        <h3>No open positions right now</h3>
+        <p>
+          Send your CV and cover letter to{' '}
+          <a href={`mailto:${site.publicEmail}?subject=Job%20application`}>{site.publicEmail}</a> and
+          we will keep it on file for future openings.
+        </p>
+      </div>
+
+      <p class="jobs-note">
+        <a href={withBase('/contact-us/')}>Contact us</a> for general employment enquiries.
+      </p>
+    </div>
+  </section>
+
+  <CtaSection
+    title="Questions about working with us?"
+    text="Reach out and our team will get back to you."
+    ctaLabel="Contact us"
+    ctaHref="/contact-us/"
+  />
+</BaseLayout>
+
+<style>
+  .jobs-empty {
+    background: var(--color-white);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-8);
+    text-align: center;
+    margin-top: var(--space-6);
+  }
+
+  .jobs-empty h3 {
+    margin-bottom: var(--space-3);
+  }
+
+  .jobs-empty p {
+    max-width: 52ch;
+    margin-inline: auto;
+  }
+
+  .jobs-note {
+    text-align: center;
+    margin-top: var(--space-6);
+  }
+</style>

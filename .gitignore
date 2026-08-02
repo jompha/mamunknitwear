@@ -1,0 +1,12 @@
+dist
+node_modules
+.astro
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+playwright-report
+test-results
+migration/raw-assets
+migration/reference-screenshots

@@ -1,0 +1,180 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+import Icon from '../components/common/Icon.astro';
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('news')).filter((post) => !post.data.draft);
+  return posts.map((post) => ({
+    params: { newsSlug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'news'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, excerpt, pubDate, coverImage, coverAlt, category, tags } = post.data;
+const seoTitle = post.data.seoTitle ?? title;
+const seoDescription = post.data.seoDescription ?? excerpt;
+const postUrl = new URL(`/${post.id}/`, Astro.site).toString();
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: excerpt,
+    datePublished: pubDate.toISOString(),
+    image: coverImage.src,
+    author: { '@type': 'Organization', name: site.name },
+    publisher: { '@type': 'Organization', name: site.name },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+  },
+];
+---
+
+<BaseLayout
+  title={seoTitle}
+  description={seoDescription}
+  canonicalPath={`/${post.id}/`}
+  ogImage={coverImage.src}
+  jsonLd={jsonLd}
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'News', href: '/news-2/' }, { label: title }]} />
+  </div>
+
+  <article class="post">
+    <header class="post__header">
+      <div class="container">
+        <div class="post__meta">
+          <time datetime={pubDate.toISOString().slice(0, 10)}>
+            <Icon name="calendar" size={14} />
+            {
+              pubDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            }
+          </time>
+          <span class="post__category">{category}</span>
+        </div>
+        <h1>{title}</h1>
+        {
+          tags.length > 0 && (
+            <ul class="post__tags" aria-label="Tags">
+              {tags.map((tag: string) => (
+                <li>{tag}</li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+    </header>
+
+    <div class="container">
+      <img
+        class="post__cover"
+        src={coverImage.src}
+        alt={coverAlt}
+        width={coverImage.width}
+        height={coverImage.height}
+      />
+      <div class="post__body prose">
+        <Content />
+      </div>
+
+      <nav class="post__nav" aria-label="Post navigation">
+        <a class="btn btn--outline" href={withBase('/news-2/')}>All news</a>
+        <a class="btn btn--outline" href={withBase('/contact-us/')}>Contact us</a>
+      </nav>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    padding-bottom: var(--space-10);
+  }
+
+  .post__header {
+    background: var(--color-page-header-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-8);
+  }
+
+  .post__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .post__meta time {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .post__category {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    font-weight: var(--fw-semibold);
+  }
+
+  .post__header h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    max-width: 24ch;
+  }
+
+  .post__tags {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .post__tags li {
+    font-size: var(--fs-xs);
+    padding: 3px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-white);
+  }
+
+  .post__cover {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-block: var(--space-8);
+  }
+
+  .post__body {
+    max-width: 76ch;
+    margin: 0 auto;
+  }
+
+  .post__nav {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+    margin-top: var(--space-8);
+    flex-wrap: wrap;
+  }
+</style>

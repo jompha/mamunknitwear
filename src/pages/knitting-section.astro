@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+import PageHeader from '../components/sections/PageHeader.astro';
+import SectionHeading from '../components/sections/SectionHeading.astro';
+import StatCards from '../components/sections/StatCards.astro';
+import CtaSection from '../components/sections/CtaSection.astro';
+import { knitting } from '../data/sections';
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+import knitting01 from '../assets/images/knitting-01.jpg';
+import knitting02 from '../assets/images/knitting-02.jpg';
+import knitting03 from '../assets/images/knitting-03.jpg';
+import knitting04 from '../assets/images/knitting-04.jpg';
+
+const gallery = [
+  { src: knitting01, alt: 'Circular knitting machines in operation' },
+  { src: knitting02, alt: 'Rows of circular knitting machines' },
+  { src: knitting03, alt: 'Knitting machine detail and yarn' },
+  { src: knitting04, alt: 'Knitted fabric produced at the factory' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Knit fabric manufacturing',
+    name: knitting.title,
+    provider: { '@type': 'Organization', name: site.name },
+    url: new URL(withBase('/knitting-section/'), Astro.site).toString(),
+  },
+];
+---
+
+<BaseLayout
+  title="Knitting Section"
+  description="Mamun Knitwear Ltd. operates a large circular knitting unit with 110 machines and flat knit, narrow fabric and quality control units."
+  canonicalPath="/knitting-section/"
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={[{ label: 'Knitting Section' }]} />
+  <PageHeader title="Knitting Section" lead={knitting.intro} />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading title="Our knitting facilities" />
+      <div class="units">
+        {
+          knitting.units.map((unit) => (
+            <div class="unit">
+              <h3>{unit.title}</h3>
+              <p>{unit.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading title="Machine list" lead="Circular knitting machines at a glance." />
+      <div class="table-wrap">
+        <table class="machine-table">
+          <caption class="sr-only">{knitting.machineTable.caption}</caption>
+          <thead>
+            <tr>
+              {knitting.machineTable.head.map((heading) => <th scope="col">{heading}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              knitting.machineTable.rows.map((row) => (
+                <tr>
+                  <td>{row.sl}</td>
+                  <td>{row.machine}</td>
+                  <td>{row.dia}</td>
+                  <td>{row.gauge}</td>
+                  <td>{row.origin}</td>
+                  <td>{row.nos}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading title="Key figures" />
+      <StatCards stats={knitting.summary} />
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading title="Inside the knitting unit" />
+      <ul class="gallery">
+        {
+          gallery.map((item) => (
+            <li class="gallery__item">
+              <img
+                src={item.src.src}
+                alt={item.alt}
+                width={item.src.width}
+                height={item.src.height}
+                loading="lazy"
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaSection
+    title="Interested in our knitting capabilities?"
+    text="Talk to our team about your knit fabric requirements."
+    ctaLabel="Contact us"
+    ctaHref="/contact-us/"
+  />
+</BaseLayout>
+
+<style>
+  .section--alt {
+    background: var(--color-page-header-bg);
+  }
+
+  .units {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .units {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .unit {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+  }
+
+  .unit h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: var(--fs-lg);
+    margin-bottom: var(--space-3);
+    color: var(--color-primary);
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .machine-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 520px;
+  }
+
+  .machine-table th,
+  .machine-table td {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .machine-table thead th {
+    background: var(--color-dark);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: var(--fw-semibold);
+  }
+
+  .machine-table tbody tr:nth-child(even) {
+    background: var(--color-page-header-bg);
+  }
+
+  .machine-table tbody tr:last-child {
+    font-weight: var(--fw-bold);
+    background: var(--color-primary-soft);
+  }
+
+  .gallery {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 639px) {
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .gallery__item img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+  }
+</style>

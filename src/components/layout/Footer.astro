@@ -1,0 +1,220 @@
+---
+import { site, sisterConcerns, navigation } from '../../data/site';
+import { withBase } from '../../utils/paths';
+import Icon from '../common/Icon.astro';
+import { getCollection } from 'astro:content';
+
+const recentNews = (await getCollection('news'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">Mamun Knitwear Ltd.</h2>
+        <p class="site-footer__text">
+          We know you want business and our experienced team knows how to do that. Come over and
+          meet them at Mamun Knitwear Ltd. See for yourself and get in touch.
+        </p>
+        <address class="site-footer__contact">
+          <p>
+            <Icon name="map-pin" size={15} />
+            {site.address.line1}, {site.address.line2}, Bangladesh
+          </p>
+          <p>
+            <Icon name="phone" size={15} />
+            <a href={`tel:${site.phoneRaw}`}>{site.phoneRaw}</a>
+          </p>
+          <p>
+            <Icon name="phone" size={15} />
+            <a href={`tel:${site.phoneAltRaw}`}>{site.phoneAlt}</a>
+          </p>
+          <p>
+            <Icon name="mail" size={15} />
+            <a href={`mailto:${site.publicEmail}`}>{site.publicEmail}</a>
+          </p>
+        </address>
+      </div>
+
+      <nav class="site-footer__col" aria-label="Footer navigation">
+        <h2 class="site-footer__title">Navigation</h2>
+        <ul class="site-footer__links">
+          {
+            navigation.map((item) => (
+              <li>
+                <a href={withBase(item.href)}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">Sister Concerns</h2>
+        <p class="site-footer__text">Here are some of our sister concerns:</p>
+        <ul class="site-footer__links">
+          {
+            sisterConcerns.map((s) => (
+              <li>
+                <a href={withBase('/about-us-2/')}>{s.name}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">Latest News</h2>
+        <ul class="site-footer__links site-footer__news">
+          {
+            recentNews.map((post) => (
+              <li>
+                <a href={withBase(`/${post.id}/`)}>{post.data.title}</a>
+                <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>
+                  {post.data.pubDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="copyright">
+    <div class="container copyright__inner">
+      <p>
+        © {year}
+        <a href={site.website} target="_blank" rel="noopener noreferrer">MamunKnitwear.com</a>. All
+        rights reserved.
+      </p>
+      <p>
+        Static rebuild by <a href={`mailto:${site.ownerEmail}`}>{site.owner}</a> ({
+          site.ownerTitle
+        }).
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-footer-bg);
+    color: var(--color-footer-text);
+    padding-top: var(--space-8);
+  }
+
+  .site-footer__grid {
+    display: grid;
+    gap: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .site-footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-footer__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .site-footer__title {
+    color: var(--color-footer-heading);
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 2px solid var(--color-primary);
+    display: inline-block;
+  }
+
+  .site-footer__text {
+    color: var(--color-footer-text);
+    margin-bottom: var(--space-4);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+
+  .site-footer__contact p {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+    font-size: var(--fs-sm);
+    color: var(--color-footer-text);
+    font-style: normal;
+  }
+
+  .site-footer__contact svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--color-primary);
+  }
+
+  .site-footer a {
+    color: var(--color-footer-text);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .site-footer a:hover,
+  .site-footer a:focus-visible {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .site-footer__links {
+    list-style: none;
+    padding: 0;
+  }
+
+  .site-footer__links li {
+    margin-bottom: var(--space-2);
+    font-size: var(--fs-sm);
+  }
+
+  .site-footer__news time {
+    display: block;
+    color: var(--color-footer-muted);
+    font-size: var(--fs-xs);
+    margin-top: 2px;
+  }
+
+  .copyright {
+    border-top: 1px solid #2a2a2a;
+    background: #101010;
+    color: var(--color-copyright);
+    font-size: var(--fs-sm);
+  }
+
+  .copyright__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding-block: var(--space-4);
+  }
+
+  .copyright a {
+    color: var(--color-copyright);
+  }
+
+  .copyright a:hover,
+  .copyright a:focus-visible {
+    color: var(--color-primary);
+  }
+</style>

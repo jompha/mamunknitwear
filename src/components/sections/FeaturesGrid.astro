@@ -1,0 +1,102 @@
+---
+import type { Feature } from '../../data/home';
+import { withBase } from '../../utils/paths';
+import Icon from '../common/Icon.astro';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  features: Feature[];
+  title?: string;
+  lead?: string;
+}
+
+const { features, title, lead } = Astro.props;
+---
+
+<section class="features section">
+  <div class="container">
+    {title && <SectionHeading title={title} lead={lead} />}
+    <div class="features__grid">
+      {
+        features.map((f) => (
+          <article class="card feature">
+            <div class="feature__icon" aria-hidden="true">
+              <Icon name={f.icon} size={34} />
+            </div>
+            <h2 class="feature__title">{f.title}</h2>
+            <p class="feature__text">{f.summary}</p>
+            <a class="btn btn--minimal" href={withBase(f.href)}>
+              Read more
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    background: var(--color-white);
+  }
+
+  .features__grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .features__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .features__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .feature {
+    padding: var(--space-7) var(--space-6);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    margin-bottom: var(--space-5);
+    transition:
+      background-color var(--transition),
+      color var(--transition);
+  }
+
+  .feature:hover .feature__icon {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  .feature__title {
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-3);
+    color: var(--color-heading);
+  }
+
+  .feature__text {
+    font-size: var(--fs-sm);
+    margin-bottom: var(--space-4);
+    flex: 1;
+  }
+</style>

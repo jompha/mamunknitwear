@@ -1,0 +1,54 @@
+---
+import { site } from '../../data/site';
+import { withBase } from '../../utils/paths';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  /** JSON-LD structured data objects to emit on this page. */
+  jsonLd?: Array<Record<string, unknown>>;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = site.description,
+  canonicalPath,
+  ogImage = '/social/og-default.jpg',
+  jsonLd = [],
+  noindex = false,
+} = Astro.props;
+
+const canonical = canonicalPath
+  ? new URL(withBase(canonicalPath), Astro.site).toString()
+  : undefined;
+const ogImageUrl = new URL(withBase(ogImage), Astro.site).toString();
+const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+---
+
+<title set:html={fullTitle} />
+<meta name="description" content={description} />
+<meta name="generator" content="Astro" />
+<link rel="canonical" href={canonical} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={site.locale} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+{
+  jsonLd.map((block) => (
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(block)} />
+  ))
+}

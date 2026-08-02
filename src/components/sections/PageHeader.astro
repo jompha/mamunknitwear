@@ -1,0 +1,51 @@
+---
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title: string;
+  lead?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+}
+
+const { title, lead, image, imageAlt = '' } = Astro.props;
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1>{title}</h1>
+    {lead && <p class="page-header__lead">{lead}</p>}
+  </div>
+  {image && <img class="page-header__img" src={image.src} alt={imageAlt} loading="lazy" />}
+</section>
+
+<style>
+  .page-header {
+    background: var(--color-page-header-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-8);
+  }
+
+  .page-header h1 {
+    color: var(--color-page-header-text);
+    font-size: var(--fs-display);
+    font-weight: var(--fw-bold);
+  }
+
+  .page-header__lead {
+    margin-top: var(--space-3);
+    max-width: 60ch;
+    color: var(--color-text);
+  }
+
+  .page-header__img {
+    margin-top: var(--space-6);
+    border-radius: var(--radius-md);
+  }
+
+  @media (max-width: 639px) {
+    .page-header h1 {
+      font-size: var(--fs-3xl);
+    }
+  }
+</style>

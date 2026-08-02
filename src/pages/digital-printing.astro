@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+import PageHeader from '../components/sections/PageHeader.astro';
+import SectionHeading from '../components/sections/SectionHeading.astro';
+import CtaSection from '../components/sections/CtaSection.astro';
+import { digitalPrinting } from '../data/sections';
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+import printing01 from '../assets/images/printing-01.jpg';
+import printing02 from '../assets/images/printing-02.jpg';
+import printing03 from '../assets/images/printing-03.jpg';
+import printing04 from '../assets/images/printing-04.jpg';
+
+const gallery = [
+  { src: printing01, alt: 'Automatic digital printing machines' },
+  { src: printing02, alt: 'Printing operator at work' },
+  { src: printing03, alt: 'M&R automatic printing machines in the production floor' },
+  { src: printing04, alt: 'Finished printed garments' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Digital fabric printing',
+    name: digitalPrinting.title,
+    provider: { '@type': 'Organization', name: site.name },
+    url: new URL(withBase('/digital-printing/'), Astro.site).toString(),
+  },
+];
+---
+
+<BaseLayout
+  title="Digital Printing"
+  description="Mamun Knitwear Ltd. is equipped with the latest M&R automatic digital printing machines for environment friendly, high quality fabric printing."
+  canonicalPath="/digital-printing/"
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={[{ label: 'Digital Printing' }]} />
+  <PageHeader title="Digital Printing" lead={digitalPrinting.intro} />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading title="Printing with the latest technology" />
+      <div class="print-layout">
+        <div class="prose">
+          <p>{digitalPrinting.details}</p>
+          <p>{digitalPrinting.mission}</p>
+        </div>
+        <ul class="fact-list">
+          {
+            digitalPrinting.facts.map((fact) => (
+              <li class="fact-list__item">
+                <span class="fact-list__label">{fact.label}</span>
+                <span class="fact-list__value">{fact.value}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading title="Inside the printing unit" />
+      <ul class="gallery">
+        {
+          gallery.map((item) => (
+            <li class="gallery__item">
+              <img
+                src={item.src.src}
+                alt={item.alt}
+                width={item.src.width}
+                height={item.src.height}
+                loading="lazy"
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaSection
+    title="Need high quality printing?"
+    text="Our printing team is ready to serve your brand."
+    ctaLabel="Contact us"
+    ctaHref="/contact-us/"
+  />
+</BaseLayout>
+
+<style>
+  .section--alt {
+    background: var(--color-page-header-bg);
+  }
+
+  .print-layout {
+    display: grid;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  @media (min-width: 860px) {
+    .print-layout {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .fact-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .fact-list__item {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .fact-list__label {
+    font-family: var(--font-heading);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: var(--fs-sm);
+    color: var(--color-primary-dark);
+  }
+
+  .fact-list__value {
+    font-size: var(--fs-sm);
+    color: var(--color-text);
+  }
+
+  .gallery {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 639px) {
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .gallery__item img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+  }
+</style>

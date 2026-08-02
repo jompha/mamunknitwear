@@ -1,0 +1,80 @@
+---
+import type { LogoItem } from '../../data/logos';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  title: string;
+  items: LogoItem[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<section class="logo-strip section">
+  <div class="container">
+    <SectionHeading title={title} />
+    <ul class="logo-strip__list">
+      {
+        items.map((item) => (
+          <li class="logo-strip__item">
+            <img
+              src={item.image.src}
+              alt={item.alt}
+              width={item.image.width}
+              height={item.image.height}
+              loading="lazy"
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .logo-strip {
+    background: var(--color-page-header-bg);
+  }
+
+  .logo-strip__list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    align-items: center;
+  }
+
+  @media (min-width: 640px) {
+    .logo-strip__list {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  .logo-strip__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 72px;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+  }
+
+  .logo-strip__item img {
+    max-height: 44px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(40%);
+    opacity: 0.85;
+    transition:
+      filter var(--transition),
+      opacity var(--transition);
+  }
+
+  .logo-strip__item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import SectionHeading from './SectionHeading.astro';
+import NewsCard from '../portfolio/NewsCard.astro';
+import { withBase } from '../../utils/paths';
+
+interface Props {
+  posts: CollectionEntry<'news'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+<section class="recent-news section">
+  <div class="container">
+    <SectionHeading title="Recent News" lead="News and updates from Mamun Knitwear Ltd." />
+    <div class="recent-news__grid">
+      {posts.slice(0, 3).map((post) => <NewsCard post={post} />)}
+    </div>
+    <div class="recent-news__more">
+      <a class="btn btn--outline" href={withBase('/news-2/')}>View all news</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .recent-news {
+    background: var(--color-white);
+  }
+
+  .recent-news__grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .recent-news__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .recent-news__more {
+    text-align: center;
+    margin-top: var(--space-7);
+  }
+</style>

@@ -1,0 +1,8 @@
+---
+const { as = 'h2', title, lead } = Astro.props;
+---
+
+<div class="heading-block">
+  {as === 'h1' ? <h1>{title}</h1> : as === 'h3' ? <h3>{title}</h3> : <h2>{title}</h2>}
+  {lead && <p class="heading-block__lead">{lead}</p>}
+</div>

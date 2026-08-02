@@ -1,0 +1,216 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+import PageHeader from '../components/sections/PageHeader.astro';
+import SectionHeading from '../components/sections/SectionHeading.astro';
+import TeamCard from '../components/portfolio/TeamCard.astro';
+import CtaSection from '../components/sections/CtaSection.astro';
+import { aboutText } from '../data/sections';
+import { historyMilestones } from '../data/home';
+import { certifications } from '../data/logos';
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+import aboutBuilding from '../assets/images/about-building.jpg';
+
+const team = (await getCollection('team')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: `About ${site.name}`,
+    url: new URL(withBase('/about-us-2/'), Astro.site).toString(),
+    mainEntity: {
+      '@type': 'Organization',
+      name: site.name,
+      description: aboutText.intro[0],
+      foundingDate: String(site.established),
+    },
+  },
+];
+---
+
+<BaseLayout
+  title="About us"
+  description={`${site.name} is a 100% export oriented knit garments factory established in ${site.established}, producing best quality knitted items.`}
+  canonicalPath="/about-us-2/"
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={[{ label: 'About us' }]} />
+  <PageHeader
+    title="About us"
+    lead="Learn about Mamun Knitwear Ltd., our history and the team behind our quality garments."
+    image={aboutBuilding}
+    imageAlt="The Mamun Knitwear Ltd. factory building"
+  />
+
+  <section class="section">
+    <div class="container about-intro">
+      <div class="heading-block">
+        <h2>Who we are</h2>
+      </div>
+      <div class="prose">
+        {aboutText.intro.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading
+        title="Our journey"
+        lead="Key milestones in the history of Mamun Knitwear Ltd."
+      />
+      <ol class="timeline">
+        {
+          historyMilestones.map((milestone) => (
+            <li class="timeline__item">
+              <span class="timeline__year" aria-hidden="true">
+                {milestone.year}
+              </span>
+              <div class="timeline__body">
+                <h3>{milestone.title}</h3>
+                <p>{milestone.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading title="Our management team" lead="The people who lead Mamun Knitwear Ltd." />
+      <div class="team-grid">
+        {team.map((member) => <TeamCard member={member} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading
+        title="Our certifications"
+        lead="Certifications and memberships we are proud of."
+      />
+      <ul class="cert-grid">
+        {
+          certifications.map((cert) => (
+            <li class="cert-grid__item">
+              <img
+                src={cert.image.src}
+                alt={cert.alt}
+                width={cert.image.width}
+                height={cert.image.height}
+                loading="lazy"
+              />
+              <span class="sr-only">{cert.name}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaSection
+    title="Want to know more?"
+    text="Get in touch with our team to discuss how we can serve you."
+    ctaLabel="Contact us"
+    ctaHref="/contact-us/"
+  />
+</BaseLayout>
+
+<style>
+  .about-intro .heading-block {
+    margin-bottom: var(--space-5);
+  }
+
+  .section--alt {
+    background: var(--color-page-header-bg);
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .timeline__item {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  @media (max-width: 639px) {
+    .timeline__item {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .timeline__year {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-xl);
+    border-radius: var(--radius-md);
+    min-height: 72px;
+  }
+
+  .timeline__body h3 {
+    margin-bottom: var(--space-2);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: var(--fs-lg);
+  }
+
+  .team-grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .cert-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+    align-items: center;
+  }
+
+  @media (min-width: 640px) {
+    .cert-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .cert-grid__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 72px;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+  }
+
+  .cert-grid__item img {
+    max-height: 52px;
+    width: auto;
+    object-fit: contain;
+  }
+</style>

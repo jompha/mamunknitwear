@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/paths';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Page not found',
+  },
+];
+---
+
+<BaseLayout
+  title="Page not found"
+  description="The page you were looking for could not be found."
+  noindex
+  jsonLd={jsonLd}
+>
+  <section class="not-found">
+    <div class="container not-found__inner">
+      <p class="not-found__code" aria-hidden="true">404</p>
+      <h1>Page not found</h1>
+      <p>
+        The page you were looking for doesn’t exist, may have been moved, or is temporarily
+        unavailable.
+      </p>
+      <div class="not-found__actions">
+        <a class="btn btn--primary" href={withBase('/')}>Back to home</a>
+        <a class="btn btn--outline" href={withBase('/contact-us/')}>Contact us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding-block: var(--space-12);
+    text-align: center;
+    background: var(--color-page-header-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .not-found__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    max-width: 52ch;
+  }
+
+  .not-found__code {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 12vw, 7rem);
+    font-weight: var(--fw-bold);
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .not-found h1 {
+    font-size: var(--fs-3xl);
+  }
+
+  .not-found p:not(.not-found__code) {
+    color: var(--color-muted);
+  }
+
+  .not-found__actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: var(--space-3);
+  }
+</style>

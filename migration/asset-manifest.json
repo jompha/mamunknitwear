@@ -1,0 +1,338 @@
+[
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\hero-factory.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\hero-factory.jpg",
+    "originalSize": 360703,
+    "optimizedSize": 152141,
+    "savingPercent": 58,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\about-building.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\about-building.jpg",
+    "originalSize": 32461,
+    "optimizedSize": 33194,
+    "savingPercent": -2,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\svc-knitting.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\svc-knitting.jpg",
+    "originalSize": 70130,
+    "optimizedSize": 47866,
+    "savingPercent": 32,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\svc-sample.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\svc-sample.jpg",
+    "originalSize": 60465,
+    "optimizedSize": 41580,
+    "savingPercent": 31,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\svc-cutting.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\svc-cutting.jpg",
+    "originalSize": 54870,
+    "optimizedSize": 36951,
+    "savingPercent": 33,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\svc-sewing.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\svc-sewing.jpg",
+    "originalSize": 72380,
+    "optimizedSize": 49302,
+    "savingPercent": 32,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\svc-finishing.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\svc-finishing.jpg",
+    "originalSize": 51750,
+    "optimizedSize": 34944,
+    "savingPercent": 32,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\svc-embroidery.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\svc-embroidery.jpg",
+    "originalSize": 49285,
+    "optimizedSize": 33545,
+    "savingPercent": 32,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\knitting-01.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\knitting-01.jpg",
+    "originalSize": 146276,
+    "optimizedSize": 95134,
+    "savingPercent": 35,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\knitting-02.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\knitting-02.jpg",
+    "originalSize": 223908,
+    "optimizedSize": 142781,
+    "savingPercent": 36,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\knitting-03.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\knitting-03.jpg",
+    "originalSize": 106163,
+    "optimizedSize": 68660,
+    "savingPercent": 35,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\knitting-04.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\knitting-04.jpg",
+    "originalSize": 225859,
+    "optimizedSize": 144074,
+    "savingPercent": 36,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\printing-01.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\printing-01.jpg",
+    "originalSize": 142408,
+    "optimizedSize": 89347,
+    "savingPercent": 37,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\printing-02.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\printing-02.jpg",
+    "originalSize": 157079,
+    "optimizedSize": 99209,
+    "savingPercent": 37,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\printing-03.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\printing-03.jpg",
+    "originalSize": 77797,
+    "optimizedSize": 51881,
+    "savingPercent": 33,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\printing-04.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\printing-04.jpg",
+    "originalSize": 152284,
+    "optimizedSize": 93174,
+    "savingPercent": 39,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\sewing-01.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\sewing-01.jpg",
+    "originalSize": 189860,
+    "optimizedSize": 121387,
+    "savingPercent": 36,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\sewing-02.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\sewing-02.jpg",
+    "originalSize": 181918,
+    "optimizedSize": 116193,
+    "savingPercent": 36,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\sewing-03.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\sewing-03.jpg",
+    "originalSize": 167027,
+    "optimizedSize": 109480,
+    "savingPercent": 34,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\sewing-04.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\sewing-04.jpg",
+    "originalSize": 171934,
+    "optimizedSize": 110661,
+    "savingPercent": 36,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\news-chairman-cip.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\news-chairman-cip.jpg",
+    "originalSize": 97689,
+    "optimizedSize": 61072,
+    "savingPercent": 37,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\news-featured-01.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\news-featured-01.jpg",
+    "originalSize": 52031,
+    "optimizedSize": 53400,
+    "savingPercent": -3,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\news-featured-02.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\news-featured-02.jpg",
+    "originalSize": 48637,
+    "optimizedSize": 50203,
+    "savingPercent": -3,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\news-featured-03.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\news-featured-03.jpg",
+    "originalSize": 51333,
+    "optimizedSize": 53772,
+    "savingPercent": -5,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\news-featured-04.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\news-featured-04.jpg",
+    "originalSize": 62338,
+    "optimizedSize": 62712,
+    "savingPercent": -1,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\team-mofizul-sm.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\team-mofizul-sm.jpg",
+    "originalSize": 18982,
+    "optimizedSize": 11849,
+    "savingPercent": 38,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\team-mofizul.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\team-mofizul.jpg",
+    "originalSize": 242804,
+    "optimizedSize": 41906,
+    "savingPercent": 83,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\team-mamunur.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\team-mamunur.jpg",
+    "originalSize": 17792,
+    "optimizedSize": 10755,
+    "savingPercent": 40,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\logo.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\logo.png",
+    "originalSize": 36769,
+    "optimizedSize": 12763,
+    "savingPercent": 65,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\client-pepe-jeans.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\client-pepe-jeans.png",
+    "originalSize": 4115,
+    "optimizedSize": 1874,
+    "savingPercent": 54,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\client-la-halle.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\client-la-halle.png",
+    "originalSize": 3296,
+    "optimizedSize": 1270,
+    "savingPercent": 61,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\client-sports-world.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\client-sports-world.png",
+    "originalSize": 4789,
+    "optimizedSize": 3033,
+    "savingPercent": 37,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\client-pierre-cardin.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\client-pierre-cardin.png",
+    "originalSize": 4382,
+    "optimizedSize": 2341,
+    "savingPercent": 47,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\client-slazenger.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\client-slazenger.png",
+    "originalSize": 4639,
+    "optimizedSize": 2105,
+    "savingPercent": 55,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\cert-bsci.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\cert-bsci.png",
+    "originalSize": 3893,
+    "optimizedSize": 1912,
+    "savingPercent": 51,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\cert-intertek.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\cert-intertek.png",
+    "originalSize": 9833,
+    "optimizedSize": 8029,
+    "savingPercent": 18,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\cert-sedex.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\cert-sedex.png",
+    "originalSize": 4207,
+    "optimizedSize": 2007,
+    "savingPercent": 52,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\cert-oeko-tex.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\cert-oeko-tex.png",
+    "originalSize": 7334,
+    "optimizedSize": 5470,
+    "savingPercent": 25,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\cert-wrap.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\cert-wrap.png",
+    "originalSize": 7516,
+    "optimizedSize": 5628,
+    "savingPercent": 25,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\cert-iso-14001.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\cert-iso-14001.png",
+    "originalSize": 4817,
+    "optimizedSize": 2970,
+    "savingPercent": 38,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\cert-ohsas.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\cert-ohsas.png",
+    "originalSize": 4679,
+    "optimizedSize": 2989,
+    "savingPercent": 36,
+    "status": "OK"
+  },
+  {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\cert-organic.png",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\cert-organic.png",
+    "originalSize": 7075,
+    "optimizedSize": 4918,
+    "savingPercent": 30,
+    "status": "OK"
+  }
+]

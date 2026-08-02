@@ -1,0 +1,123 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+import { site } from '../../data/site';
+import { withBase } from '../../utils/paths';
+
+export async function getStaticPaths() {
+  const members = (await getCollection('team')).filter((member) => !member.data.draft);
+  return members.map((member) => ({
+    params: { slug: member.id },
+    props: { member },
+  }));
+}
+
+interface Props {
+  member: CollectionEntry<'team'>;
+}
+
+const { member } = Astro.props;
+const { Content } = await render(member);
+const { name, role, image, imageAlt, shortIntro } = member.data;
+const seoTitle = member.data.seoTitle ?? name;
+const seoDescription = member.data.seoDescription ?? shortIntro;
+const profileUrl = new URL(`/team/${member.id}/`, Astro.site).toString();
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name,
+    jobTitle: role,
+    worksFor: { '@type': 'Organization', name: site.name },
+    url: profileUrl,
+    image: image.src,
+  },
+];
+---
+
+<BaseLayout
+  title={seoTitle}
+  description={seoDescription}
+  canonicalPath={`/team/${member.id}/`}
+  ogImage={image.src}
+  jsonLd={jsonLd}
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'About us', href: '/about-us-2/' }, { label: name }]} />
+  </div>
+
+  <article class="profile">
+    <div class="container profile__grid">
+      <aside class="profile__card">
+        <img src={image.src} alt={imageAlt || name} width={image.width} height={image.height} />
+        <h1>{name}</h1>
+        <p class="profile__role">{role}</p>
+      </aside>
+
+      <div class="profile__body">
+        <div class="prose">
+          <Content />
+        </div>
+        <p class="profile__back">
+          <a class="btn btn--outline" href={withBase('/about-us-2/')}>Back to our team</a>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .profile {
+    padding-block: var(--space-8) var(--space-10);
+  }
+
+  .profile__grid {
+    display: grid;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  @media (min-width: 860px) {
+    .profile__grid {
+      grid-template-columns: 340px 1fr;
+    }
+  }
+
+  .profile__card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    text-align: center;
+    position: sticky;
+    top: var(--space-6);
+  }
+
+  .profile__card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-5);
+  }
+
+  .profile__card h1 {
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-2);
+  }
+
+  .profile__role {
+    color: var(--color-primary);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .profile__back {
+    margin-top: var(--space-7);
+  }
+</style>

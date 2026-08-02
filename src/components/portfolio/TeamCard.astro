@@ -1,0 +1,77 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { withBase } from '../../utils/paths';
+
+interface Props {
+  member: CollectionEntry<'team'>;
+}
+
+const { member } = Astro.props;
+---
+
+<article class="team-card card">
+  <a class="team-card__media" href={withBase(`/team/${member.id}/`)}>
+    <img
+      src={member.data.image.src}
+      alt={member.data.imageAlt || member.data.name}
+      width={member.data.image.width}
+      height={member.data.image.height}
+      loading="lazy"
+    />
+  </a>
+  <div class="team-card__body">
+    <h3 class="team-card__name">
+      <a href={withBase(`/team/${member.id}/`)}>{member.data.name}</a>
+    </h3>
+    <p class="team-card__role">{member.data.role}</p>
+    <p class="team-card__intro">{member.data.shortIntro}</p>
+    <a class="btn btn--minimal" href={withBase(`/team/${member.id}/`)}>View profile</a>
+  </div>
+</article>
+
+<style>
+  .team-card {
+    overflow: hidden;
+  }
+
+  .team-card__media img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .team-card__body {
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .team-card__name {
+    font-size: var(--fs-lg);
+  }
+
+  .team-card__name a {
+    color: var(--color-heading);
+    text-decoration: none;
+  }
+
+  .team-card__name a:hover,
+  .team-card__name a:focus-visible {
+    color: var(--color-primary);
+  }
+
+  .team-card__role {
+    color: var(--color-primary);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .team-card__intro {
+    font-size: var(--fs-sm);
+    flex: 1;
+  }
+</style>

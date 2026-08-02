@@ -1,0 +1,52 @@
+---
+import '../styles/fonts.css';
+import '../styles/global.css';
+import Seo from '../components/common/Seo.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { withBase } from '../utils/paths';
+import montserratWoff2 from '../assets/fonts/montserrat-latin.woff2';
+import ptSans400Woff2 from '../assets/fonts/pt-sans-latin-400.woff2';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  jsonLd?: Array<Record<string, unknown>>;
+  noindex?: boolean;
+}
+
+const { title, description, canonicalPath, ogImage, jsonLd, noindex } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3498db" />
+    <link rel="icon" type="image/png" sizes="32x32" href={withBase('/favicon-32.png')} />
+    <link rel="icon" type="image/png" sizes="192x192" href={withBase('/favicon-192.png')} />
+    <link rel="apple-touch-icon" href={withBase('/favicon-180.png')} />
+    <Seo
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+      ogImage={ogImage}
+      jsonLd={jsonLd}
+      noindex={noindex}
+    />
+    <link rel="preload" href={montserratWoff2} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={ptSans400Woff2} as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <Header currentPath={currentPath} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

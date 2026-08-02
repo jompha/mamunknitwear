@@ -1,0 +1,67 @@
+---
+import type { Stat } from '../../data/sections';
+
+interface Props {
+  stats: Stat[];
+}
+
+const { stats } = Astro.props;
+---
+
+<ul class="stat-cards">
+  {
+    stats.map((stat) => (
+      <li class="stat-card">
+        <span class="stat-card__value">{stat.value}</span>
+        <span class="stat-card__label">{stat.label}</span>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .stat-cards {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 640px) {
+    .stat-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .stat-cards {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .stat-card {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .stat-card__value {
+    font-family: var(--font-heading);
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+  }
+
+  .stat-card__label {
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.92;
+  }
+</style>
