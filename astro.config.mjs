@@ -4,16 +4,14 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 //
-// GitHub Pages deployment:
-// - site: root of the Pages host (https://mmknit.github.io)
-// - base: repository name so the site is served from /mamunknitwear/
-//
-// For a custom root domain (e.g. https://mamunknitwear.com):
-//   set site to 'https://mamunknitwear.com' and base to '/' (remove this line),
-//   then add a CNAME file in public/ and update the DNS (see DEPLOYMENT.md).
+// GitHub Pages deployment under a custom root domain (www.mamunknitwear.com):
+// - site: the primary host, also set as the Pages custom domain in
+//   Settings -> Pages (the apex mamunknitwear.com redirects to it)
+// - base: '/' because the site is served from the domain root
+//   (DNS records for GitHub Pages are listed in DEPLOYMENT.md)
 export default defineConfig({
-  site: 'https://mmknit.github.io',
-  base: '/mamunknitwear',
+  site: 'https://www.mamunknitwear.com',
+  base: '/',
   output: 'static',
   trailingSlash: 'always',
   integrations: [

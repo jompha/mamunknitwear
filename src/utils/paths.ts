@@ -6,8 +6,8 @@
  * custom root domain (base = "/") the helper becomes a no-op.
  *
  * @example
- *   withBase('/about-us/') // => '/mamunknitwear/about-us/' (project page)
- *                          // => '/about-us/' (custom domain)
+ *   withBase('/about-us/') // => '/about-us/' (custom domain, base = "/")
+ *                          // => '/mamunknitwear/about-us/' (sub-path base)
  */
 export function withBase(path: string): string {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');

@@ -13,7 +13,7 @@ export default defineConfig({
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
     command: 'npm run build && npm run preview',
-    url: 'http://localhost:4321/mamunknitwear/',
+    url: 'http://localhost:4321/',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },

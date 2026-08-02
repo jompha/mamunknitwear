@@ -7,11 +7,16 @@ description: Use when deploying or preparing a deployment of the Mamun Knitwear 
 
 ## How deployment works
 
-The repo is `mmknit/mamunknitwear` and the site publishes to
-`https://mmknit.github.io/mamunknitwear`. Astro is configured in
-`astro.config.mjs` with `site: 'https://mmknit.github.io'` and
-`base: '/mamunknitwear'`, so URLs are prefix-aware and no `--base` flag is
-needed at build time.
+The repo is `mmknit/mamunknitwear` and the site is served from the custom
+domain root at `https://www.mamunknitwear.com` (Pages fallback:
+`https://mmknit.github.io/mamunknitwear`). Astro is configured in
+`astro.config.mjs` with `site: 'https://www.mamunknitwear.com'` and
+`base: '/'`, so URLs need no prefix and no `--base` flag at build time.
+
+The custom domain is set in **Settings → Pages** (`www.mamunknitwear.com`,
+Enforce HTTPS); the apex `mamunknitwear.com` redirects to it. Cloudflare DNS
+must be DNS-only (grey cloud): A `@` → the four GitHub Pages `185.199.10x.153`
+records, CNAME `www` → `mmknit.github.io`.
 
 `.github/workflows/deploy.yml` runs on pushes to `main`: installs
 dependencies, builds, and publishes the `dist/` folder via
@@ -29,12 +34,15 @@ enabled in the repo settings with **GitHub Actions** as the source.
 ## First-time setup (owner action required)
 
 - The repo must exist at `mmknit/mamunknitwear` (empty `main` branch).
-- GitHub Pages: Settings → Pages → Source: **GitHub Actions**.
+- GitHub Pages: Settings → Pages → Source: **GitHub Actions**, then set the
+  **Custom domain** to `www.mamunknitwear.com` and enable Enforce HTTPS.
+- Point the Cloudflare records at GitHub Pages (DNS-only — see DEPLOYMENT.md).
 - GH CLI (`gh`) must be authenticated on the machine: `gh auth login`.
 
 ## Troubleshooting
 
-- 404 on subpaths: confirm `base` in `astro.config.mjs` matches the repo name.
+- 404 on subpaths: custom domain not yet set in Settings → Pages, or DNS
+  records missing (records must be DNS-only, not proxied).
 - Workflow not running: confirm the `.github/workflows/deploy.yml` is on
   `main` and Pages is set to GitHub Actions.
 - `check:links` failures are usually stale `dist/`; rebuild first.

@@ -4,7 +4,7 @@ export const site = {
   tagline: '100% Export Oriented Knit Garments Manufacturer',
   description:
     'Mamun Knitwear Ltd. is a 100% export oriented knit garments manufacturer in Gazipur, Bangladesh, with knitting, printing, embroidery and sewing facilities.',
-  url: import.meta.env.SITE ?? 'https://mmknit.github.io',
+  url: import.meta.env.SITE ?? 'https://www.mamunknitwear.com',
   base: import.meta.env.BASE_URL,
   language: 'en',
   locale: 'en_US',

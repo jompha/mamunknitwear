@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const BASE = '/mamunknitwear';
+const BASE = '';
 
 const NAV_ITEMS: Array<[label: string, href: string]> = [
   ['Home', '/'],

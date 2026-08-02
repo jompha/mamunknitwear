@@ -35,8 +35,9 @@ Site content lives in Markdown posts under `src/content/news/` and
 
 3. Body is Markdown. Existing posts contain no internal links; if a post
    needs one, use a relative path (e.g. `/about-us/`) — the base-path
-   helper in the layout handles the `/mamunknitwear` prefix at build time.
-   Verify with `npm run check:links` after building.
+   helper in the layout handles any base prefix at build time (no-op when
+   served from the domain root). Verify with `npm run check:links` after
+   building.
 
 ## Team members
 

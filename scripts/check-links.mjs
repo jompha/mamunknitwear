@@ -17,7 +17,7 @@ import { join, dirname, normalize, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const distDir = fileURLToPath(new URL('../dist', import.meta.url));
-const BASE = process.env.ASTRO_BASE ?? '/mamunknitwear';
+const BASE = process.env.ASTRO_BASE ?? '/';
 const basePrefix = BASE === '/' ? '' : BASE.replace(/\/$/, '');
 
 /** Recursively list all files under `dir` (relative paths). */
@@ -55,8 +55,8 @@ function checkReference(ref, originFile) {
   if (!path) return;
 
   // Resolve relative to the origin file. Absolute references carry the base
-  // prefix (e.g. /mamunknitwear/about-us/) which must be stripped before
-  // mapping onto the built filesystem (dist/about-us/).
+  // prefix when one is configured (e.g. /mamunknitwear/about-us/), which must
+  // be stripped before mapping onto the built filesystem (dist/about-us/).
   const withoutBase =
     path.startsWith('/') && path.startsWith(basePrefix)
       ? path.slice(basePrefix.length) || '/'
@@ -84,7 +84,7 @@ for (const file of htmlFiles) {
   const html = readFileSync(file, 'utf8');
   const baseHref = html.match(/<base href="([^"]+)"/i);
   // Note: internal links in the Astro output are absolute with the base prefix
-  // (e.g. /mamunknitwear/about-us/), so no manual base handling is required.
+  // when one is configured, so no manual base handling is required.
   void baseHref;
 
   for (const match of html.matchAll(LINK_RE)) {

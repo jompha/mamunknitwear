@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const BASE = '/mamunknitwear';
+const BASE = '';
 
 test('contact page renders the form and fallback', async ({ page }) => {
   await page.goto(`${BASE}/contact-us/`);
@@ -55,7 +55,7 @@ test('knitting page shows machine table', async ({ page }) => {
 test('SEO meta and favicon are present', async ({ page }) => {
   await page.goto(`${BASE}/`);
   const canonical = page.locator('link[rel="canonical"]');
-  await expect(canonical).toHaveAttribute('href', /mamunknitwear\/$/);
+  await expect(canonical).toHaveAttribute('href', /www\.mamunknitwear\.com\/$/);
   await expect(page.locator('link[rel="icon"]').first()).toHaveAttribute(
     'href',
     `${BASE}/favicon-32.png`,
