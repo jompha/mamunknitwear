@@ -1,4 +1,4 @@
----
+﻿---
 import type { ImageMetadata } from 'astro';
 import { withBase } from '../../utils/paths';
 import Icon from '../common/Icon.astro';
@@ -18,6 +18,8 @@ interface Props {
   eyebrow?: string;
   secondaryCtaLabel?: string;
   secondaryCtaHref?: string;
+  ctaIcon?: string;
+  ctaDownload?: boolean;
   chips?: Chip[];
 }
 
@@ -31,6 +33,8 @@ const {
   eyebrow = 'Knit Garments Manufacturer · Gazipur, Bangladesh',
   secondaryCtaLabel,
   secondaryCtaHref = '/about-us-2/',
+  ctaIcon = 'arrow-right',
+  ctaDownload = false,
   chips = [],
 } = Astro.props;
 ---
@@ -57,9 +61,9 @@ const {
     <h1 class="hero__title">{title}</h1>
     <p class="hero__text">{text}</p>
     <div class="hero__actions">
-      <a class="btn btn--primary" href={withBase(ctaHref)}>
+      <a class="btn btn--primary" href={withBase(ctaHref)} download={ctaDownload ? '' : undefined}>
         {ctaLabel}
-        <Icon name="arrow-right" size={16} />
+        <Icon name={ctaIcon} size={16} />
       </a>
       {
         secondaryCtaLabel && (
@@ -112,7 +116,7 @@ const {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(60% 90% at 18% 88%, rgb(161 98 7 / 0.38) 0%, transparent 55%),
+      radial-gradient(60% 90% at 18% 88%, rgb(2 132 199 / 0.38) 0%, transparent 55%),
       linear-gradient(
         100deg,
         rgb(12 10 9 / 0.88) 0%,

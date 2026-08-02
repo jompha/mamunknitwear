@@ -1,5 +1,5 @@
-/* Design tokens — "Premium Black & Gold" identity.
-   Warm near-black brand, refined gold accent, soft warm canvas.
+/* Design tokens — "Premium Black & Cyan" identity.
+   Cool near-black brand, light cyan/blue accent, soft neutral canvas.
    Headings: Lexend · Body: Source Sans 3. */
 
 :root {
@@ -7,10 +7,10 @@
   --color-primary: #1c1917;
   --color-primary-dark: #292524;
   --color-primary-soft: #f5f5f4;
-  --color-accent: #a16207;
-  --color-accent-dark: #854d0e;
-  --color-accent-soft: #f6ecd9;
-  --color-accent-bright: #d9a441;
+  --color-accent: #0284c7;
+  --color-accent-dark: #0369a1;
+  --color-accent-soft: #e0f2fe;
+  --color-accent-bright: #7dd3fc;
 
   /* Neutrals (warm) */
   --color-background: #fafaf9;
@@ -79,7 +79,7 @@
   --shadow-sm: 0 1px 2px rgb(28 25 23 / 0.06);
   --shadow-md: 0 8px 24px rgb(28 25 23 / 0.1);
   --shadow-lg: 0 18px 44px rgb(28 25 23 / 0.16);
-  --shadow-accent: 0 8px 20px rgb(161 98 7 / 0.28);
+  --shadow-accent: 0 8px 20px rgb(2 132 199 / 0.28);
 
   /* Effects */
   --blur-header: saturate(1.4) blur(12px);

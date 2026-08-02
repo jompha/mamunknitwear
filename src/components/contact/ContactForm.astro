@@ -1,4 +1,4 @@
----
+﻿---
 import { site } from '../../data/site';
 import Icon from '../common/Icon.astro';
 
@@ -13,8 +13,8 @@ const mailto = `mailto:${site.publicEmail}`;
         <span class="eyebrow">Contact information</span>
         <h2>Do Contact Us</h2>
         <p>
-          We are always happy and eager to hear from you. Reach to us anytime, any moment — we would
-          love to have some conversation and build a great relationship ahead.
+          We are always happy and eager to hear from you. Reach to us anytime, any moment â€” we
+          would love to have some conversation and build a great relationship ahead.
         </p>
         <address class="contact-info-box__list">
           <p>
@@ -146,7 +146,7 @@ const mailto = `mailto:${site.publicEmail}`;
     }
 
     event.preventDefault();
-    if (status) status.textContent = 'Sending…';
+    if (status) status.textContent = 'Sendingâ€¦';
     fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -154,7 +154,7 @@ const mailto = `mailto:${site.publicEmail}`;
     })
       .then((res) => {
         if (res.ok && status) {
-          status.textContent = 'Thank you — your message has been sent.';
+          status.textContent = 'Thank you â€” your message has been sent.';
           form.reset();
         } else if (status) {
           status.textContent = 'Sorry, sending failed. Please email us directly instead.';
@@ -191,7 +191,7 @@ const mailto = `mailto:${site.publicEmail}`;
 
   .contact-info-box {
     background:
-      radial-gradient(60% 100% at 100% 0%, rgb(161 98 7 / 0.22) 0%, transparent 60%),
+      radial-gradient(60% 100% at 100% 0%, rgb(2 132 199 / 0.22) 0%, transparent 60%),
       var(--color-primary);
     border-radius: var(--radius-lg);
     padding: var(--space-7);
@@ -285,7 +285,7 @@ const mailto = `mailto:${site.publicEmail}`;
   .form-group textarea:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgb(161 98 7 / 0.18);
+    box-shadow: 0 0 0 3px rgb(2 132 199 / 0.18);
     background: var(--color-white);
   }
 

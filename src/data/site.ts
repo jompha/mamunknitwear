@@ -43,15 +43,21 @@ export type SiteConfig = typeof site;
 export interface NavItem {
   label: string;
   href: string;
+  children?: NavItem[];
 }
 
 export const navigation: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'About us', href: '/about-us-2/' },
-  { label: 'Services', href: '/services/' },
-  { label: 'Knitting', href: '/knitting-section/' },
-  { label: 'Digital Printing', href: '/digital-printing/' },
-  { label: 'Sewing', href: '/sewing-section/' },
+  {
+    label: 'Services',
+    href: '/services/',
+    children: [
+      { label: 'Knitting', href: '/knitting-section/' },
+      { label: 'Digital Printing', href: '/digital-printing/' },
+      { label: 'Sewing', href: '/sewing-section/' },
+    ],
+  },
   { label: 'News', href: '/news-2/' },
   { label: 'Contact us', href: '/contact-us/' },
 ];

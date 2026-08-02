@@ -1,4 +1,4 @@
----
+﻿---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
@@ -44,7 +44,7 @@ const jsonLd = [
   <PageHeader
     title="About us"
     eyebrow="Our story"
-    lead="A 100% export oriented knit garments manufacturer in Gazipur, Bangladesh — knitting, printing, embroidery and sewing under one roof."
+    lead="A 100% export oriented knit garments manufacturer in Gazipur, Bangladesh â€” knitting, printing, embroidery and sewing under one roof."
     image={aboutBuilding}
     imageAlt="The Mamun Knitwear Ltd. factory building"
   />
@@ -247,27 +247,24 @@ const jsonLd = [
     padding: var(--space-4);
     transition:
       border-color var(--transition),
-      box-shadow var(--transition);
+      box-shadow var(--transition),
+      transform var(--transition-slow);
   }
 
   .cert-grid__item:hover {
-    border-color: rgb(161 98 7 / 0.35);
-    box-shadow: var(--shadow-sm);
+    border-color: rgb(2 132 199 / 0.35);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
   }
 
   .cert-grid__item img {
     max-height: 52px;
     width: auto;
     object-fit: contain;
-    filter: grayscale(1);
-    opacity: 0.75;
-    transition:
-      filter var(--transition),
-      opacity var(--transition);
+    transition: transform var(--transition-slow);
   }
 
   .cert-grid__item:hover img {
-    filter: grayscale(0);
-    opacity: 1;
+    transform: scale(1.12);
   }
 </style>

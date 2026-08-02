@@ -6,11 +6,14 @@ const NAV_ITEMS: Array<[label: string, href: string]> = [
   ['Home', '/'],
   ['About us', '/about-us-2/'],
   ['Services', '/services/'],
+  ['News', '/news-2/'],
+  ['Contact us', '/contact-us/'],
+];
+
+const SERVICES_ITEMS: Array<[label: string, href: string]> = [
   ['Knitting', '/knitting-section/'],
   ['Digital Printing', '/digital-printing/'],
   ['Sewing', '/sewing-section/'],
-  ['News', '/news-2/'],
-  ['Contact us', '/contact-us/'],
 ];
 
 test('home page renders hero and branding', async ({ page }) => {
@@ -29,6 +32,20 @@ test('navigation links all resolve to 200', async ({ page }) => {
     const link = nav.getByRole('link', { name: label });
     await expect(link).toBeVisible();
     const response = await page.request.get(`${BASE}${href === '/' ? '/' : href}`);
+    expect(response.ok(), `${label} at ${href} should return 200`).toBeTruthy();
+  }
+});
+
+test('services submenu lists knitting, digital printing and sewing', async ({ page }) => {
+  await page.goto(`${BASE}/`);
+  const nav = page.getByRole('navigation', { name: 'Main navigation' });
+  const services = nav.getByRole('link', { name: 'Services' });
+  await expect(services).toBeVisible();
+  await services.hover();
+  for (const [label, href] of SERVICES_ITEMS) {
+    const link = nav.getByRole('link', { name: label });
+    await expect(link).toBeVisible();
+    const response = await page.request.get(`${BASE}${href}`);
     expect(response.ok(), `${label} at ${href} should return 200`).toBeTruthy();
   }
 });

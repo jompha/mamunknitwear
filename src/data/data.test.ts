@@ -7,7 +7,10 @@ import { clients, certifications } from './logos';
 
 describe('site data', () => {
   it('defines a navigation entry for every migrated section', () => {
-    const hrefs = navigation.map((item) => item.href);
+    const hrefs = navigation.flatMap((item) => [
+      item.href,
+      ...(item.children ?? []).map((c) => c.href),
+    ]);
     expect(hrefs).toContain('/about-us-2/');
     expect(hrefs).toContain('/services/');
     expect(hrefs).toContain('/knitting-section/');

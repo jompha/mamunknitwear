@@ -1,4 +1,4 @@
----
+﻿---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/sections/Hero.astro';
@@ -50,16 +50,18 @@ const jsonLd = [
   <Hero
     title="Manufacturing excellence in knit garments since 2013"
     text={site.tagline}
-    ctaLabel="Discover our services"
-    ctaHref="/services/"
+    ctaLabel="Download company profile"
+    ctaHref={site.profilePdf}
+    ctaIcon="download"
+    ctaDownload
     secondaryCtaLabel="About our company"
     secondaryCtaHref="/about-us-2/"
     image={heroImage}
     imageAlt="Exterior view of the Mamun Knitwear Ltd. factory building"
     chips={[
       { label: '100% Export Oriented', icon: 'globe' },
-      { label: 'BSCI · OEKO-TEX · WRAP Certified', icon: 'shield-check' },
-      { label: 'Est. 2013 · Gazipur, Bangladesh', icon: 'map-pin' },
+      { label: 'BSCI Â· OEKO-TEX Â· WRAP Certified', icon: 'shield-check' },
+      { label: 'Est. 2013 Â· Gazipur, Bangladesh', icon: 'map-pin' },
     ]}
   />
 
@@ -76,11 +78,12 @@ const jsonLd = [
       </div>
       <div class="intro__body">
         <span class="eyebrow">About Mamun Knitwear</span>
-        <h2>From yarn to finished garment — under one roof</h2>
+        <h2>From yarn to finished garment â€” under one roof</h2>
         <p>
           Mamun Knitwear Ltd. is a 100% export oriented knit garments manufacturer in Gazipur,
           Bangladesh. Our own building surrounds an area of 2,00,000 sq. ft., housing knitting,
-          printing, embroidery and sewing facilities that serve the world’s famous clothing brands.
+          printing, embroidery and sewing facilities that serve the worldâ€™s famous clothing
+          brands.
         </p>
         <ul class="intro__points">
           <li><Icon name="check-circle" size={18} /> Composite facilities in a single location</li>
@@ -113,7 +116,7 @@ const jsonLd = [
         <span class="eyebrow">Our capabilities</span>
         <h2>What we do</h2>
         <p class="heading-block__lead">
-          Integrated manufacturing — knitting, sample, cutting, sewing, finishing and embroidery.
+          Integrated manufacturing â€” knitting, sample, cutting, sewing, finishing and embroidery.
         </p>
       </div>
       <ul class="services-preview__grid">
@@ -192,7 +195,7 @@ const jsonLd = [
 
   <CtaSection
     title="Ready to build your next collection?"
-    text="Talk to our manufacturing team about your knitwear requirements — from sampling to shipment."
+    text="Talk to our manufacturing team about your knitwear requirements â€” from sampling to shipment."
     ctaLabel="Contact us"
     ctaHref="/contact-us/"
   />
@@ -326,7 +329,7 @@ const jsonLd = [
   .services-preview__card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
-    border-color: rgb(161 98 7 / 0.25);
+    border-color: rgb(2 132 199 / 0.25);
   }
 
   .services-preview__card a {
@@ -423,27 +426,24 @@ const jsonLd = [
     padding: var(--space-4);
     transition:
       border-color var(--transition),
-      box-shadow var(--transition);
+      box-shadow var(--transition),
+      transform var(--transition-slow);
   }
 
   .certs__item:hover {
-    border-color: rgb(161 98 7 / 0.35);
-    box-shadow: var(--shadow-sm);
+    border-color: rgb(2 132 199 / 0.35);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
   }
 
   .certs__item img {
     max-height: 48px;
     width: auto;
     object-fit: contain;
-    filter: grayscale(1);
-    opacity: 0.75;
-    transition:
-      filter var(--transition),
-      opacity var(--transition);
+    transition: transform var(--transition-slow);
   }
 
   .certs__item:hover img {
-    filter: grayscale(0);
-    opacity: 1;
+    transform: scale(1.12);
   }
 </style>
