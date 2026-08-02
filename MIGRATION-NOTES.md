@@ -12,7 +12,7 @@ served from GitHub Pages.
 ## What was preserved
 
 - **All public page URLs** that were still live on the source site:
-  `/`, `/about-us-2/`, `/services/`, `/knitting-section/`,
+  `/`, `/about-us/`, `/services/`, `/knitting-section/`,
   `/digital-printing/`, `/sewing-section/`, `/news-2/`, `/contact-us/`.
   (The dead-end `/jobs/` route was removed — see below.)
 - **News post URLs** match the WordPress title-slug scheme
@@ -46,9 +46,9 @@ served from GitHub Pages.
   plugin page with no real postings and no value to visitors. It was removed
   along with its menu item; the URL now 404s on the static site. Re-introduce
   a careers page only when there are actual vacancies to publish.
-- **Dead footer/news links removed.** Old links pointing to
-  `/about-us/`, `/news/`, and `/news/{id}/` now resolve to the migrated
-  equivalents (`/about-us-2/`, `/news-2/`, and root-level post slugs).
+- **Dead footer/news links removed.** Old links pointing to `/news/` and
+  `/news/{id}/` now resolve to the migrated equivalents (`/news-2/` and
+  root-level post slugs).
 - **Small copy normalisation** for consistency (email/phone formatting,
   consistent "Knitting/Printing/Sewing" section names).
 

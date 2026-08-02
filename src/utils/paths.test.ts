@@ -8,7 +8,7 @@ describe('withBase', () => {
   });
 
   it('prefixes paths with the configured base', () => {
-    expect(withBase('/about-us-2/')).toBe('/mamunknitwear/about-us-2/');
+    expect(withBase('/about-us/')).toBe('/mamunknitwear/about-us/');
     expect(withBase('/')).toBe('/mamunknitwear/');
   });
 
@@ -19,7 +19,7 @@ describe('withBase', () => {
 
 describe('stripBase', () => {
   it('removes the base prefix from a URL', () => {
-    expect(stripBase('/mamunknitwear/about-us-2/')).toBe('/about-us-2/');
+    expect(stripBase('/mamunknitwear/about-us/')).toBe('/about-us/');
   });
 
   it('returns "/" when the path is the bare base', () => {

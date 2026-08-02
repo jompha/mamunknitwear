@@ -33,7 +33,7 @@ export const homeFeatures: Feature[] = [
     summary:
       'Our factory is 100% environment friendly with full time ETP to process all the junks.',
     icon: 'tree',
-    href: '/about-us-2/',
+    href: '/about-us/',
   },
   {
     title: 'Commitment',
@@ -47,7 +47,7 @@ export const homeFeatures: Feature[] = [
     summary:
       'Maintenance of our products is critical for long lasting quality. Choose the right partner.',
     icon: 'briefcase',
-    href: '/about-us-2/',
+    href: '/about-us/',
   },
   {
     title: 'Buyer Satisfaction',
@@ -61,7 +61,7 @@ export const homeFeatures: Feature[] = [
     summary:
       'First aid and medical assistance provided for free. Govt. labor law and BGMEA rules are strictly followed.',
     icon: 'medkit',
-    href: '/about-us-2/',
+    href: '/about-us/',
   },
 ];
 

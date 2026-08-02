@@ -4,7 +4,7 @@ const BASE = '/mamunknitwear';
 
 const NAV_ITEMS: Array<[label: string, href: string]> = [
   ['Home', '/'],
-  ['About us', '/about-us-2/'],
+  ['About us', '/about-us/'],
   ['Services', '/services/'],
   ['News', '/news-2/'],
   ['Contact us', '/contact-us/'],
@@ -57,14 +57,14 @@ test('navigation works on mobile viewport', async ({ page }) => {
   const nav = page.getByRole('navigation', { name: 'Main navigation' });
   await expect(nav.getByRole('link', { name: 'About us' })).toBeVisible();
   await nav.getByRole('link', { name: 'About us' }).click();
-  await expect(page).toHaveURL(/\/about-us-2\/$/);
+  await expect(page).toHaveURL(/\/about-us\/$/);
   await expect(page.getByRole('heading', { level: 1, name: /About us/i })).toBeVisible();
 });
 
 test('every migrated page returns 200', async ({ page }) => {
   const paths = [
     '/',
-    '/about-us-2/',
+    '/about-us/',
     '/services/',
     '/knitting-section/',
     '/digital-printing/',

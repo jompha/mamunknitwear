@@ -34,7 +34,7 @@ Site content lives in Markdown posts under `src/content/news/` and
    sync if present.
 
 3. Body is Markdown. Existing posts contain no internal links; if a post
-   needs one, use a relative path (e.g. `/about-us-2/`) — the base-path
+   needs one, use a relative path (e.g. `/about-us/`) — the base-path
    helper in the layout handles the `/mamunknitwear` prefix at build time.
    Verify with `npm run check:links` after building.
 

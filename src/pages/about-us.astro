@@ -23,7 +23,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     name: `About ${site.name}`,
-    url: new URL(withBase('/about-us-2/'), Astro.site).toString(),
+    url: new URL(withBase('/about-us/'), Astro.site).toString(),
     mainEntity: {
       '@type': 'Organization',
       name: site.name,
@@ -37,7 +37,7 @@ const jsonLd = [
 <BaseLayout
   title="About us"
   description={`${site.name} is a 100% export oriented knit garments factory established in ${site.established}, producing best quality knitted items.`}
-  canonicalPath="/about-us-2/"
+  canonicalPath="/about-us/"
   jsonLd={jsonLd}
 >
   <Breadcrumbs items={[{ label: 'About us' }]} />

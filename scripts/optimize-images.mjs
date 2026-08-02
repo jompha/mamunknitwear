@@ -12,6 +12,7 @@ const plan = [
   { name: 'svc-knitting.jpg', maxWidth: 900, q: 75, convert: 'jpeg' },
   { name: 'svc-sample.jpg', maxWidth: 900, q: 75, convert: 'jpeg' },
   { name: 'svc-cutting.jpg', maxWidth: 900, q: 75, convert: 'jpeg' },
+  { name: 'cutting-section.jpg', maxWidth: 900, q: 75, convert: 'jpeg' },
   { name: 'svc-sewing.jpg', maxWidth: 900, q: 75, convert: 'jpeg' },
   { name: 'svc-finishing.jpg', maxWidth: 900, q: 75, convert: 'jpeg' },
   { name: 'svc-embroidery.jpg', maxWidth: 900, q: 75, convert: 'jpeg' },

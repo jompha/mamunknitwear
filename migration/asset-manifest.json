@@ -40,6 +40,14 @@
     "status": "OK"
   },
   {
+    "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\cutting-section.jpg",
+    "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\cutting-section.jpg",
+    "originalSize": 14511,
+    "optimizedSize": 12589,
+    "savingPercent": 13,
+    "status": "OK"
+  },
+  {
     "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\svc-sewing.jpg",
     "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\svc-sewing.jpg",
     "originalSize": 72380,
@@ -210,17 +218,17 @@
   {
     "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\team-mofizul.jpg",
     "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\team-mofizul.jpg",
-    "originalSize": 242804,
-    "optimizedSize": 41906,
-    "savingPercent": 83,
+    "originalSize": 16008,
+    "optimizedSize": 8166,
+    "savingPercent": 49,
     "status": "OK"
   },
   {
     "source": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\migration\\raw-assets\\team-mamunur.jpg",
     "destination": "C:\\Users\\mahfu\\Desktop\\AI-Projects\\mamunknitwear-static\\opencode\\src\\assets\\images\\team-mamunur.jpg",
-    "originalSize": 17792,
-    "optimizedSize": 10755,
-    "savingPercent": 40,
+    "originalSize": 19768,
+    "optimizedSize": 9701,
+    "savingPercent": 51,
     "status": "OK"
   },
   {

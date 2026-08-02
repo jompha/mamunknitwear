@@ -11,7 +11,7 @@ describe('site data', () => {
       item.href,
       ...(item.children ?? []).map((c) => c.href),
     ]);
-    expect(hrefs).toContain('/about-us-2/');
+    expect(hrefs).toContain('/about-us/');
     expect(hrefs).toContain('/services/');
     expect(hrefs).toContain('/knitting-section/');
     expect(hrefs).toContain('/digital-printing/');
