@@ -28,7 +28,6 @@ export const site = {
   social: {
     facebook: 'https://www.facebook.com/mamunknitwearltd',
     linkedin: 'https://www.linkedin.com/',
-    twitter: 'https://twitter.com/',
   },
   profilePdf: '/files/Company-Profile-MKL.pdf',
   // Placeholder for the static contact form endpoint (see CONTACT.md / MIGRATION-NOTES.md).

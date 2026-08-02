@@ -175,7 +175,6 @@ const mailto = `mailto:${site.publicEmail}`;
   @media (min-width: 900px) {
     .contact-form-section__grid {
       grid-template-columns: 5fr 7fr;
-      align-items: start;
     }
   }
 
@@ -243,11 +242,20 @@ const mailto = `mailto:${site.publicEmail}`;
     border-radius: var(--radius-lg);
     padding: clamp(1.25rem, 3vw, 2.5rem);
     box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
   }
 
   .contact-form {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: var(--space-5);
+    flex: 1;
+  }
+
+  .contact-form .btn {
+    align-self: flex-start;
+    margin-top: auto;
   }
 
   .form-group label {
