@@ -1,6 +1,12 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { withBase } from '../../utils/paths';
+import Icon from '../common/Icon.astro';
+
+interface Chip {
+  label: string;
+  icon?: string;
+}
 
 interface Props {
   title: string;
@@ -9,9 +15,24 @@ interface Props {
   ctaHref: string;
   image: ImageMetadata;
   imageAlt?: string;
+  eyebrow?: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
+  chips?: Chip[];
 }
 
-const { title, text, ctaLabel, ctaHref, image, imageAlt = '' } = Astro.props;
+const {
+  title,
+  text,
+  ctaLabel,
+  ctaHref,
+  image,
+  imageAlt = '',
+  eyebrow = 'Knit Garments Manufacturer · Gazipur, Bangladesh',
+  secondaryCtaLabel,
+  secondaryCtaHref = '/about-us-2/',
+  chips = [],
+} = Astro.props;
 ---
 
 <section class="hero">
@@ -29,9 +50,37 @@ const { title, text, ctaLabel, ctaHref, image, imageAlt = '' } = Astro.props;
     <div class="hero__overlay" aria-hidden="true"></div>
   </div>
   <div class="container hero__content">
+    <span class="hero__eyebrow">
+      <span class="hero__eyebrow-dot" aria-hidden="true"></span>
+      {eyebrow}
+    </span>
     <h1 class="hero__title">{title}</h1>
     <p class="hero__text">{text}</p>
-    <a class="btn btn--primary" href={withBase(ctaHref)}>{ctaLabel}</a>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href={withBase(ctaHref)}>
+        {ctaLabel}
+        <Icon name="arrow-right" size={16} />
+      </a>
+      {
+        secondaryCtaLabel && (
+          <a class="btn btn--outline-light" href={withBase(secondaryCtaHref)}>
+            {secondaryCtaLabel}
+          </a>
+        )
+      }
+    </div>
+    {
+      chips.length > 0 && (
+        <ul class="hero__chips">
+          {chips.map((chip) => (
+            <li>
+              <Icon name={chip.icon ?? 'check-circle'} size={16} />
+              {chip.label}
+            </li>
+          ))}
+        </ul>
+      )
+    }
   </div>
 </section>
 
@@ -40,9 +89,10 @@ const { title, text, ctaLabel, ctaHref, image, imageAlt = '' } = Astro.props;
     position: relative;
     display: flex;
     align-items: center;
-    min-height: min(70vh, 560px);
+    min-height: min(76vh, 620px);
     color: var(--color-white);
     isolation: isolate;
+    overflow: hidden;
   }
 
   .hero__media {
@@ -61,30 +111,97 @@ const { title, text, ctaLabel, ctaHref, image, imageAlt = '' } = Astro.props;
   .hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      100deg,
-      rgb(0 0 0 / 0.72) 0%,
-      rgb(0 0 0 / 0.45) 55%,
-      rgb(0 0 0 / 0.2) 100%
-    );
+    background:
+      radial-gradient(60% 90% at 18% 88%, rgb(161 98 7 / 0.38) 0%, transparent 55%),
+      linear-gradient(
+        100deg,
+        rgb(12 10 9 / 0.88) 0%,
+        rgb(12 10 9 / 0.62) 48%,
+        rgb(12 10 9 / 0.34) 100%
+      );
   }
 
   .hero__content {
     padding-block: var(--space-12);
   }
 
+  .hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(255 255 255 / 0.22);
+    border-radius: var(--radius-full);
+    background: rgb(255 255 255 / 0.06);
+    backdrop-filter: blur(6px);
+    font-family: var(--font-heading);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent-bright);
+  }
+
+  .hero__eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: var(--radius-full);
+    background: var(--color-accent-bright);
+  }
+
   .hero__title {
     color: var(--color-white);
-    font-size: clamp(1.75rem, 4.5vw, 3rem);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
     font-weight: var(--fw-bold);
-    max-width: 16ch;
+    letter-spacing: -0.02em;
+    max-width: 18ch;
     margin-bottom: var(--space-5);
   }
 
   .hero__text {
-    color: rgb(255 255 255 / 0.92);
+    color: rgb(255 255 255 / 0.88);
     font-size: var(--fs-lg);
     max-width: 52ch;
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-7);
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-8);
+  }
+
+  .hero__chips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .hero__chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    color: rgb(255 255 255 / 0.92);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    background: rgb(255 255 255 / 0.08);
+    border: 1px solid rgb(255 255 255 / 0.14);
+  }
+
+  .hero__chips svg {
+    color: var(--color-accent-bright);
+  }
+
+  @media (max-width: 639px) {
+    .hero__eyebrow {
+      font-size: 0.7rem;
+    }
   }
 </style>

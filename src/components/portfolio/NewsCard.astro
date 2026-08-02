@@ -20,6 +20,7 @@ const cover = post.data.coverImage;
       height={cover.height}
       loading="lazy"
     />
+    <span class="news-card__category">{post.data.category}</span>
   </a>
   <div class="news-card__body">
     <div class="news-card__meta">
@@ -33,13 +34,15 @@ const cover = post.data.coverImage;
           })
         }
       </time>
-      <span class="news-card__category">{post.data.category}</span>
     </div>
     <h3 class="news-card__title">
       <a href={withBase(`/${post.id}/`)}>{post.data.title}</a>
     </h3>
     <p class="news-card__excerpt">{post.data.excerpt}</p>
-    <a class="btn btn--minimal" href={withBase(`/${post.id}/`)}>Read more</a>
+    <a class="btn btn--minimal" href={withBase(`/${post.id}/`)}>
+      Read more
+      <Icon name="arrow-right" size={15} />
+    </a>
   </div>
 </article>
 
@@ -49,11 +52,39 @@ const cover = post.data.coverImage;
     flex-direction: column;
   }
 
+  .news-card__media {
+    position: relative;
+    display: block;
+  }
+
   .news-card__media img {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    border-bottom: 1px solid var(--color-border);
+    transition: transform var(--transition-slow);
+  }
+
+  .news-card:hover .news-card__media img {
+    transform: scale(1.04);
+  }
+
+  .news-card__media {
+    overflow: hidden;
+  }
+
+  .news-card__category {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-3);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-accent);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
   }
 
   .news-card__body {
@@ -67,7 +98,6 @@ const cover = post.data.coverImage;
   .news-card__meta {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: var(--space-3);
     font-size: var(--fs-xs);
     color: var(--color-muted);
@@ -79,11 +109,8 @@ const cover = post.data.coverImage;
     gap: 5px;
   }
 
-  .news-card__category {
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-primary);
-    font-weight: var(--fw-semibold);
+  .news-card__meta svg {
+    color: var(--color-accent);
   }
 
   .news-card__title {
@@ -98,11 +125,15 @@ const cover = post.data.coverImage;
 
   .news-card__title a:hover,
   .news-card__title a:focus-visible {
-    color: var(--color-primary);
+    color: var(--color-accent);
   }
 
   .news-card__excerpt {
     font-size: var(--fs-sm);
     flex: 1;
+  }
+
+  .news-card .btn--minimal {
+    align-self: flex-start;
   }
 </style>

@@ -5,14 +5,16 @@ import SectionHeading from './SectionHeading.astro';
 interface Props {
   title: string;
   items: LogoItem[];
+  lead?: string;
+  eyebrow?: string;
 }
 
-const { title, items } = Astro.props;
+const { title, items, lead, eyebrow } = Astro.props;
 ---
 
-<section class="logo-strip section">
+<section class="logo-strip section section--alt">
   <div class="container">
-    <SectionHeading title={title} />
+    <SectionHeading title={title} lead={lead} eyebrow={eyebrow} />
     <ul class="logo-strip__list">
       {
         items.map((item) => (
@@ -32,16 +34,12 @@ const { title, items } = Astro.props;
 </section>
 
 <style>
-  .logo-strip {
-    background: var(--color-page-header-bg);
-  }
-
   .logo-strip__list {
     list-style: none;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-5);
+    gap: var(--space-4);
     align-items: center;
   }
 
@@ -55,26 +53,34 @@ const { title, items } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 72px;
+    min-height: 84px;
     background: var(--color-white);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--space-4);
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .logo-strip__item:hover {
+    border-color: rgb(161 98 7 / 0.35);
+    box-shadow: var(--shadow-sm);
   }
 
   .logo-strip__item img {
-    max-height: 44px;
+    max-height: 48px;
     width: auto;
     object-fit: contain;
-    filter: grayscale(40%);
-    opacity: 0.85;
+    filter: grayscale(1);
+    opacity: 0.7;
     transition:
       filter var(--transition),
       opacity var(--transition);
   }
 
   .logo-strip__item:hover img {
-    filter: grayscale(0%);
+    filter: grayscale(0);
     opacity: 1;
   }
 </style>

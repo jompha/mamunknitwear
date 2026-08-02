@@ -12,6 +12,8 @@ export default [
       'playwright-report/',
       'test-results/',
       'migration/raw-assets/',
+      '.opencode/',
+      '.claude/',
     ],
   },
   js.configs.recommended,

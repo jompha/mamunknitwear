@@ -4,6 +4,7 @@ import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
 import PageHeader from '../components/sections/PageHeader.astro';
 import SectionHeading from '../components/sections/SectionHeading.astro';
 import CtaSection from '../components/sections/CtaSection.astro';
+import Icon from '../components/common/Icon.astro';
 import { digitalPrinting } from '../data/sections';
 import { site } from '../data/site';
 import { withBase } from '../utils/paths';
@@ -38,13 +39,13 @@ const jsonLd = [
   jsonLd={jsonLd}
 >
   <Breadcrumbs items={[{ label: 'Digital Printing' }]} />
-  <PageHeader title="Digital Printing" lead={digitalPrinting.intro} />
+  <PageHeader title="Digital Printing" eyebrow="Our facilities" lead={digitalPrinting.intro} />
 
   <section class="section">
     <div class="container">
-      <SectionHeading title="Printing with the latest technology" />
+      <SectionHeading title="Printing with the latest technology" eyebrow="Capabilities" />
       <div class="print-layout">
-        <div class="prose">
+        <div class="prose print-prose">
           <p>{digitalPrinting.details}</p>
           <p>{digitalPrinting.mission}</p>
         </div>
@@ -52,6 +53,9 @@ const jsonLd = [
           {
             digitalPrinting.facts.map((fact) => (
               <li class="fact-list__item">
+                <span class="fact-list__icon" aria-hidden="true">
+                  <Icon name="settings" size={18} />
+                </span>
                 <span class="fact-list__label">{fact.label}</span>
                 <span class="fact-list__value">{fact.value}</span>
               </li>
@@ -64,7 +68,7 @@ const jsonLd = [
 
   <section class="section section--alt">
     <div class="container">
-      <SectionHeading title="Inside the printing unit" />
+      <SectionHeading title="Inside the printing unit" eyebrow="Gallery" />
       <ul class="gallery">
         {
           gallery.map((item) => (
@@ -92,10 +96,6 @@ const jsonLd = [
 </BaseLayout>
 
 <style>
-  .section--alt {
-    background: var(--color-page-header-bg);
-  }
-
   .print-layout {
     display: grid;
     gap: var(--space-6);
@@ -108,6 +108,10 @@ const jsonLd = [
     }
   }
 
+  .print-prose {
+    margin-inline: 0;
+  }
+
   .fact-list {
     list-style: none;
     padding: 0;
@@ -118,12 +122,32 @@ const jsonLd = [
   .fact-list__item {
     background: var(--color-white);
     border: 1px solid var(--color-border);
-    border-left: 4px solid var(--color-primary);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     padding: var(--space-5);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: var(--space-2) var(--space-3);
+    align-items: center;
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .fact-list__item:hover {
+    border-color: rgb(161 98 7 / 0.3);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .fact-list__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    grid-row: span 2;
+    border-radius: var(--radius-md);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
   }
 
   .fact-list__label {
@@ -132,7 +156,7 @@ const jsonLd = [
     text-transform: uppercase;
     letter-spacing: 0.04em;
     font-size: var(--fs-sm);
-    color: var(--color-primary-dark);
+    color: var(--color-heading);
   }
 
   .fact-list__value {
@@ -154,10 +178,19 @@ const jsonLd = [
     }
   }
 
+  .gallery__item {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
   .gallery__item img {
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
-    border-radius: var(--radius-md);
+    transition: transform var(--transition-slow);
+  }
+
+  .gallery__item:hover img {
+    transform: scale(1.03);
   }
 </style>

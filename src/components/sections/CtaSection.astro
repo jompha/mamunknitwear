@@ -1,30 +1,54 @@
 ---
 import { withBase } from '../../utils/paths';
+import Icon from '../common/Icon.astro';
 
 interface Props {
   title: string;
   text: string;
   ctaLabel: string;
   ctaHref: string;
+  eyebrow?: string;
 }
 
-const { title, text, ctaLabel, ctaHref } = Astro.props;
+const {
+  title,
+  text,
+  ctaLabel,
+  ctaHref,
+  eyebrow = 'Let’s build your next collection',
+} = Astro.props;
 ---
 
 <section class="cta section">
+  <div class="cta__glow" aria-hidden="true"></div>
   <div class="container cta__inner">
+    <span class="eyebrow eyebrow--dark">{eyebrow}</span>
     <h2>{title}</h2>
     <p>{text}</p>
-    <a class="btn btn--light" href={withBase(ctaHref)}>{ctaLabel}</a>
+    <a class="btn btn--primary" href={withBase(ctaHref)}>
+      {ctaLabel}
+      <Icon name="arrow-right" size={16} />
+    </a>
   </div>
 </section>
 
 <style>
   .cta {
+    position: relative;
     background:
-      linear-gradient(rgb(52 152 219 / 0.92), rgb(52 152 219 / 0.92)), var(--color-primary);
+      radial-gradient(70% 120% at 50% 0%, rgb(161 98 7 / 0.28) 0%, transparent 60%),
+      var(--color-primary);
     color: var(--color-white);
     text-align: center;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .cta__glow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(40% 60% at 50% 100%, rgb(217 164 65 / 0.12) 0%, transparent 70%);
   }
 
   .cta__inner {
@@ -36,14 +60,15 @@ const { title, text, ctaLabel, ctaHref } = Astro.props;
 
   .cta h2 {
     color: var(--color-white);
-    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
     font-weight: var(--fw-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.01em;
+    max-width: 24ch;
   }
 
   .cta p {
     max-width: 60ch;
-    color: rgb(255 255 255 / 0.95);
+    color: rgb(255 255 255 / 0.9);
+    margin-bottom: var(--space-2);
   }
 </style>

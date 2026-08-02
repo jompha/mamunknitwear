@@ -5,6 +5,7 @@ import PageHeader from '../components/sections/PageHeader.astro';
 import SectionHeading from '../components/sections/SectionHeading.astro';
 import StatCards from '../components/sections/StatCards.astro';
 import CtaSection from '../components/sections/CtaSection.astro';
+import Icon from '../components/common/Icon.astro';
 import { sewing } from '../data/sections';
 import { site } from '../data/site';
 import { withBase } from '../utils/paths';
@@ -19,6 +20,8 @@ const gallery = [
   { src: sewing03, alt: 'Garments in production at the sewing unit' },
   { src: sewing04, alt: 'Quality inspection of finished garments' },
 ];
+
+const unitIcons = ['scissors', 'ruler', 'shirt', 'sparkles'];
 
 const jsonLd = [
   {
@@ -39,15 +42,18 @@ const jsonLd = [
   jsonLd={jsonLd}
 >
   <Breadcrumbs items={[{ label: 'Sewing Section' }]} />
-  <PageHeader title="Sewing Section" lead={sewing.intro} />
+  <PageHeader title="Sewing Section" eyebrow="Our facilities" lead={sewing.intro} />
 
   <section class="section">
     <div class="container">
-      <SectionHeading title="From fabric to finished garment" />
+      <SectionHeading title="From fabric to finished garment" eyebrow="Production units" />
       <div class="units">
         {
-          sewing.units.map((unit) => (
+          sewing.units.map((unit, index) => (
             <div class="unit">
+              <div class="unit__icon" aria-hidden="true">
+                <Icon name={unitIcons[index] ?? 'factory'} size={22} />
+              </div>
               <h3>{unit.title}</h3>
               <p>{unit.text}</p>
             </div>
@@ -59,14 +65,14 @@ const jsonLd = [
 
   <section class="section section--alt">
     <div class="container">
-      <SectionHeading title="Key figures" />
+      <SectionHeading title="Key figures" eyebrow="At a glance" />
       <StatCards stats={sewing.summary} />
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <SectionHeading title="Inside the sewing unit" />
+      <SectionHeading title="Inside the sewing unit" eyebrow="Gallery" />
       <ul class="gallery">
         {
           gallery.map((item) => (
@@ -94,10 +100,6 @@ const jsonLd = [
 </BaseLayout>
 
 <style>
-  .section--alt {
-    background: var(--color-page-header-bg);
-  }
-
   .units {
     display: grid;
     gap: var(--space-6);
@@ -114,14 +116,36 @@ const jsonLd = [
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--space-6);
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .unit:hover {
+    border-color: rgb(161 98 7 / 0.3);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .unit__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    margin-bottom: var(--space-4);
   }
 
   .unit h3 {
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
     font-size: var(--fs-lg);
     margin-bottom: var(--space-3);
-    color: var(--color-primary);
+    color: var(--color-heading);
+  }
+
+  .unit p {
+    font-size: var(--fs-sm);
   }
 
   .gallery {
@@ -138,10 +162,19 @@ const jsonLd = [
     }
   }
 
+  .gallery__item {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
   .gallery__item img {
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
-    border-radius: var(--radius-md);
+    transition: transform var(--transition-slow);
+  }
+
+  .gallery__item:hover img {
+    transform: scale(1.03);
   }
 </style>

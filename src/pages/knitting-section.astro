@@ -5,6 +5,7 @@ import PageHeader from '../components/sections/PageHeader.astro';
 import SectionHeading from '../components/sections/SectionHeading.astro';
 import StatCards from '../components/sections/StatCards.astro';
 import CtaSection from '../components/sections/CtaSection.astro';
+import Icon from '../components/common/Icon.astro';
 import { knitting } from '../data/sections';
 import { site } from '../data/site';
 import { withBase } from '../utils/paths';
@@ -39,15 +40,18 @@ const jsonLd = [
   jsonLd={jsonLd}
 >
   <Breadcrumbs items={[{ label: 'Knitting Section' }]} />
-  <PageHeader title="Knitting Section" lead={knitting.intro} />
+  <PageHeader title="Knitting Section" eyebrow="Our facilities" lead={knitting.intro} />
 
   <section class="section">
     <div class="container">
-      <SectionHeading title="Our knitting facilities" />
+      <SectionHeading title="Our knitting facilities" eyebrow="Production units" />
       <div class="units">
         {
           knitting.units.map((unit) => (
             <div class="unit">
+              <div class="unit__icon" aria-hidden="true">
+                <Icon name="layers" size={22} />
+              </div>
               <h3>{unit.title}</h3>
               <p>{unit.text}</p>
             </div>
@@ -59,7 +63,11 @@ const jsonLd = [
 
   <section class="section section--alt">
     <div class="container">
-      <SectionHeading title="Machine list" lead="Circular knitting machines at a glance." />
+      <SectionHeading
+        title="Machine list"
+        eyebrow="Fleet at a glance"
+        lead="Circular knitting machines — diameter, gauge and origin."
+      />
       <div class="table-wrap">
         <table class="machine-table">
           <caption class="sr-only">{knitting.machineTable.caption}</caption>
@@ -89,14 +97,14 @@ const jsonLd = [
 
   <section class="section">
     <div class="container">
-      <SectionHeading title="Key figures" />
+      <SectionHeading title="Key figures" eyebrow="At a glance" />
       <StatCards stats={knitting.summary} />
     </div>
   </section>
 
   <section class="section section--alt">
     <div class="container">
-      <SectionHeading title="Inside the knitting unit" />
+      <SectionHeading title="Inside the knitting unit" eyebrow="Gallery" />
       <ul class="gallery">
         {
           gallery.map((item) => (
@@ -124,10 +132,6 @@ const jsonLd = [
 </BaseLayout>
 
 <style>
-  .section--alt {
-    background: var(--color-page-header-bg);
-  }
-
   .units {
     display: grid;
     gap: var(--space-6);
@@ -144,14 +148,36 @@ const jsonLd = [
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--space-6);
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .unit:hover {
+    border-color: rgb(161 98 7 / 0.3);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .unit__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    margin-bottom: var(--space-4);
   }
 
   .unit h3 {
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
     font-size: var(--fs-lg);
     margin-bottom: var(--space-3);
-    color: var(--color-primary);
+    color: var(--color-heading);
+  }
+
+  .unit p {
+    font-size: var(--fs-sm);
   }
 
   .table-wrap {
@@ -175,19 +201,21 @@ const jsonLd = [
   }
 
   .machine-table thead th {
-    background: var(--color-dark);
+    background: var(--color-primary);
     color: var(--color-white);
     font-family: var(--font-heading);
     font-weight: var(--fw-semibold);
+    letter-spacing: 0.02em;
   }
 
   .machine-table tbody tr:nth-child(even) {
-    background: var(--color-page-header-bg);
+    background: var(--color-background);
   }
 
   .machine-table tbody tr:last-child {
     font-weight: var(--fw-bold);
-    background: var(--color-primary-soft);
+    background: var(--color-accent-soft);
+    color: var(--color-heading);
   }
 
   .gallery {
@@ -204,10 +232,19 @@ const jsonLd = [
     }
   }
 
+  .gallery__item {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
   .gallery__item img {
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
-    border-radius: var(--radius-md);
+    transition: transform var(--transition-slow);
+  }
+
+  .gallery__item:hover img {
+    transform: scale(1.03);
   }
 </style>

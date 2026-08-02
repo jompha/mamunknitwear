@@ -28,13 +28,23 @@ calendar-ish minor versions (`1.0.0`, `1.1.0`, …).
 
 ### Changed
 
+- **Redesigned** the site with the "Premium Black & Gold" theme
+  (`ui-ux-pro-max`): warm near-black brand `#1C1917`, gold accent `#A16207`,
+  warm canvas `#FAFAF9`; headings in self-hosted Lexend and body in Source
+  Sans 3 (both SIL OFL), replacing Montserrat/PT Sans.
 - **Migrated** from the WordPress/PHP site `mamunknitwear.com` to a static
   build; preserved original public URLs (see `MIGRATION-NOTES.md`).
 - **Removed** the source site's Google Analytics property `UA-81405524-1`.
 - **Replaced** the sewing section's original "Lorem ipsum" placeholder text
   with real copy.
-- **Replaced** the dead-end WordPress jobs plugin page with a minimal
-  "no open positions" page at the same URL.
+- **Removed** the dead-end WordPress jobs plugin page (now 404s) and its nav
+  entry; `/jobs/` no longer ships.
+- **Redesigned** all layout, section, portfolio, and contact components
+  (Header with glass sticky nav + CTA, dark footer, hero trust chips, stat
+  cards, service rows, timeline, certification strips, gallery hover effects)
+  and rebuilt every page around the Enterprise Gateway landing pattern.
+- **Excluded** `.opencode/` and `.claude/` from lint/prettier scope and
+  added `.prettierignore` so tooling skill scripts do not fail validation.
 
 ### Tooling
 

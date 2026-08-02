@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { withBase } from '../../utils/paths';
+import Icon from '../common/Icon.astro';
 
 interface Props {
   member: CollectionEntry<'team'>;
@@ -25,7 +26,10 @@ const { member } = Astro.props;
     </h3>
     <p class="team-card__role">{member.data.role}</p>
     <p class="team-card__intro">{member.data.shortIntro}</p>
-    <a class="btn btn--minimal" href={withBase(`/team/${member.id}/`)}>View profile</a>
+    <a class="btn btn--minimal" href={withBase(`/team/${member.id}/`)}>
+      View profile
+      <Icon name="arrow-right" size={15} />
+    </a>
   </div>
 </article>
 
@@ -39,6 +43,16 @@ const { member } = Astro.props;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-bottom: 1px solid var(--color-border);
+    transition: transform var(--transition-slow);
+  }
+
+  .team-card:hover .team-card__media img {
+    transform: scale(1.04);
+  }
+
+  .team-card__media {
+    display: block;
+    overflow: hidden;
   }
 
   .team-card__body {
@@ -59,19 +73,23 @@ const { member } = Astro.props;
 
   .team-card__name a:hover,
   .team-card__name a:focus-visible {
-    color: var(--color-primary);
+    color: var(--color-accent);
   }
 
   .team-card__role {
-    color: var(--color-primary);
+    color: var(--color-accent);
     font-weight: var(--fw-semibold);
     font-size: var(--fs-sm);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
   }
 
   .team-card__intro {
     font-size: var(--fs-sm);
     flex: 1;
+  }
+
+  .team-card .btn--minimal {
+    align-self: flex-start;
   }
 </style>

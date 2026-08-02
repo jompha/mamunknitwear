@@ -1,8 +1,99 @@
 ---
-const { as = 'h2', title, lead } = Astro.props;
+interface Props {
+  as?: 'h1' | 'h2' | 'h3';
+  title: string;
+  lead?: string;
+  eyebrow?: string;
+  align?: 'center' | 'left';
+  dark?: boolean;
+}
+
+const { as = 'h2', title, lead, eyebrow, align = 'center', dark = false } = Astro.props;
 ---
 
-<div class="heading-block">
+<div
+  class:list={[
+    'heading-block',
+    { 'heading-block--dark': dark },
+    { 'heading-block--left': align === 'left' },
+  ]}
+>
+  {eyebrow && <span class="eyebrow">{eyebrow}</span>}
   {as === 'h1' ? <h1>{title}</h1> : as === 'h3' ? <h3>{title}</h3> : <h2>{title}</h2>}
   {lead && <p class="heading-block__lead">{lead}</p>}
 </div>
+
+<style>
+  .heading-block {
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .heading-block--left {
+    text-align: left;
+  }
+
+  .heading-block--left .eyebrow {
+    margin-bottom: var(--space-3);
+  }
+
+  .heading-block h1,
+  .heading-block h2,
+  .heading-block h3 {
+    position: relative;
+    display: inline-block;
+    padding-bottom: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .heading-block--left h1,
+  .heading-block--left h2,
+  .heading-block--left h3 {
+    display: block;
+  }
+
+  .heading-block h1::after,
+  .heading-block h2::after,
+  .heading-block h3::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-bright));
+  }
+
+  .heading-block--left h1::after,
+  .heading-block--left h2::after,
+  .heading-block--left h3::after {
+    left: 0;
+    transform: none;
+  }
+
+  .heading-block .heading-block__lead {
+    max-width: 640px;
+    margin-inline: auto;
+    color: var(--color-muted);
+  }
+
+  .heading-block--left .heading-block__lead {
+    margin-inline: 0;
+  }
+
+  .heading-block--dark h1,
+  .heading-block--dark h2,
+  .heading-block--dark h3 {
+    color: var(--color-white);
+  }
+
+  .heading-block--dark .heading-block__lead {
+    color: var(--color-page-header-text);
+  }
+
+  .heading-block--dark .eyebrow {
+    color: var(--color-accent-bright);
+  }
+</style>

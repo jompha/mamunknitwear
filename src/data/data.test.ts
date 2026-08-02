@@ -14,7 +14,6 @@ describe('site data', () => {
     expect(hrefs).toContain('/digital-printing/');
     expect(hrefs).toContain('/sewing-section/');
     expect(hrefs).toContain('/news-2/');
-    expect(hrefs).toContain('/jobs/');
     expect(hrefs).toContain('/contact-us/');
   });
 

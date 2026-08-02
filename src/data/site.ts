@@ -53,7 +53,6 @@ export const navigation: NavItem[] = [
   { label: 'Digital Printing', href: '/digital-printing/' },
   { label: 'Sewing', href: '/sewing-section/' },
   { label: 'News', href: '/news-2/' },
-  { label: 'Career', href: '/jobs/' },
   { label: 'Contact us', href: '/contact-us/' },
 ];
 

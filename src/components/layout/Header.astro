@@ -16,40 +16,46 @@ const isActive = (href: string) =>
   <div class="top-bar">
     <div class="container top-bar__inner">
       <div class="top-bar__contact">
-        <a class="top-bar__item" href={withBase('/contact-us/')}>
-          <Icon name="map-pin" size={15} />
-          <span>{site.address.line1}, {site.address.line2}</span>
+        <a class="top-bar__item" href={`mailto:${site.publicEmail}`}>
+          <Icon name="mail" size={14} />
+          <span>{site.publicEmail}</span>
         </a>
         <a class="top-bar__item" href={`tel:${site.phoneRaw}`}>
-          <Icon name="phone" size={15} />
-          <span>Call Us @ {site.phoneRaw}</span>
+          <Icon name="phone" size={14} />
+          <span>{site.phone}</span>
         </a>
       </div>
-      <div class="top-bar__social">
-        <a
-          href={site.social.facebook}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Facebook"
-        >
-          <Icon name="facebook" size={16} />
-        </a>
-        <a
-          href={site.social.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-        >
-          <Icon name="linkedin" size={16} />
-        </a>
-        <a
-          href={site.social.twitter}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Twitter"
-        >
-          <Icon name="twitter" size={16} />
-        </a>
+      <div class="top-bar__right">
+        <span class="top-bar__badge">
+          <Icon name="globe" size={14} />
+          100% Export Oriented · Since {site.established}
+        </span>
+        <div class="top-bar__social">
+          <a
+            href={site.social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <Icon name="facebook" size={15} />
+          </a>
+          <a
+            href={site.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <Icon name="linkedin" size={15} />
+          </a>
+          <a
+            href={site.social.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter"
+          >
+            <Icon name="twitter" size={15} />
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -89,6 +95,10 @@ const isActive = (href: string) =>
             ))
           }
         </ul>
+        <a class="btn btn--primary header-main__cta" href={withBase('/contact-us/')}>
+          Get a Quote
+          <Icon name="arrow-right" size={16} />
+        </a>
       </nav>
     </div>
   </div>
@@ -96,16 +106,16 @@ const isActive = (href: string) =>
 
 <style>
   .site-header {
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: var(--z-header);
-    background: var(--color-white);
-    border-bottom: 1px solid var(--color-border);
   }
 
   .top-bar {
-    background: var(--color-navy);
-    color: var(--color-muted);
+    background: var(--color-footer-bg);
+    color: var(--color-footer-muted);
     font-size: var(--fs-xs);
+    border-bottom: 1px solid rgb(255 255 255 / 0.06);
   }
 
   .top-bar__inner {
@@ -124,36 +134,67 @@ const isActive = (href: string) =>
     flex-wrap: wrap;
   }
 
+  .top-bar__right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
   .top-bar__item {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    color: var(--color-muted);
+    color: var(--color-footer-text);
     text-decoration: none;
   }
 
   .top-bar__item:hover,
   .top-bar__item:focus-visible {
-    color: var(--color-primary);
+    color: var(--color-accent-bright);
   }
 
   .top-bar__item svg {
-    color: var(--color-primary);
+    color: var(--color-accent-bright);
+  }
+
+  .top-bar__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-footer-text);
+    font-family: var(--font-heading);
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .top-bar__badge svg {
+    color: var(--color-accent-bright);
   }
 
   .top-bar__social {
     display: flex;
-    gap: var(--space-4);
+    gap: var(--space-3);
+    padding-left: var(--space-4);
+    border-left: 1px solid rgb(255 255 255 / 0.12);
   }
 
   .top-bar__social a {
-    color: var(--color-muted);
+    color: var(--color-footer-text);
     display: inline-flex;
   }
 
   .top-bar__social a:hover,
   .top-bar__social a:focus-visible {
-    color: var(--color-primary);
+    color: var(--color-accent-bright);
+  }
+
+  .header-main {
+    background: rgb(250 250 249 / 0.86);
+    backdrop-filter: var(--blur-header);
+    -webkit-backdrop-filter: var(--blur-header);
+    border-bottom: 1px solid var(--color-border);
+    transition: box-shadow var(--transition-slow);
   }
 
   .header-main__inner {
@@ -161,7 +202,7 @@ const isActive = (href: string) =>
     align-items: center;
     justify-content: space-between;
     gap: var(--space-5);
-    min-height: 80px;
+    min-height: 84px;
   }
 
   .brand {
@@ -171,14 +212,20 @@ const isActive = (href: string) =>
 
   .brand__logo {
     width: auto;
-    max-height: 42px;
+    max-height: 46px;
     object-fit: contain;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
   }
 
   .site-nav__list {
     display: flex;
     list-style: none;
-    gap: clamp(0.25rem, 1.2vw, 1.25rem);
+    gap: clamp(0.4rem, 1.3vw, 1.4rem);
     padding: 0;
     flex-wrap: wrap;
   }
@@ -192,20 +239,27 @@ const isActive = (href: string) =>
     font-size: var(--fs-sm);
     font-weight: var(--fw-medium);
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     color: var(--color-text);
     text-decoration: none;
     border-bottom: 2px solid transparent;
+    transition:
+      color var(--transition),
+      border-color var(--transition);
   }
 
   .site-nav__item a:hover,
   .site-nav__item a:focus-visible {
-    color: var(--color-primary);
+    color: var(--color-accent);
   }
 
   .site-nav__item--active a {
     color: var(--color-primary);
-    border-bottom-color: var(--color-primary);
+    border-bottom-color: var(--color-accent);
+  }
+
+  .header-main__cta {
+    display: none;
   }
 
   /* Mobile toggle (checkbox hack: works without JS) */
@@ -240,6 +294,7 @@ const isActive = (href: string) =>
       height: 44px;
       border: 1px solid var(--color-border);
       border-radius: var(--radius-sm);
+      background: var(--color-white);
       cursor: pointer;
     }
 
@@ -284,23 +339,26 @@ const isActive = (href: string) =>
     }
 
     .site-nav {
-      display: none;
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: var(--space-3) var(--container-pad) var(--space-5);
       background: var(--color-white);
       border-bottom: 1px solid var(--color-border);
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-lg);
+      display: none;
     }
 
     .nav-toggle__input:checked ~ .site-nav {
-      display: block;
+      display: flex;
     }
 
     .site-nav__list {
       flex-direction: column;
-      padding: var(--space-3) var(--container-pad);
       gap: 0;
     }
 
@@ -312,11 +370,27 @@ const isActive = (href: string) =>
     .site-nav__item--active a {
       border-bottom-color: var(--color-border);
     }
+
+    .header-main__cta {
+      display: inline-flex;
+      justify-content: center;
+      margin-top: var(--space-4);
+    }
   }
 
   @media (min-width: 1024px) {
     .nav-toggle__input,
     .nav-toggle {
+      display: none;
+    }
+
+    .header-main__cta {
+      display: inline-flex;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .top-bar__badge {
       display: none;
     }
   }

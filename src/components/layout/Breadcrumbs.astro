@@ -39,6 +39,16 @@ const { items } = Astro.props;
     padding-block: var(--space-3);
   }
 
+  .breadcrumbs a:hover,
+  .breadcrumbs a:focus-visible {
+    color: var(--color-accent);
+  }
+
+  .breadcrumbs [aria-current='page'] {
+    color: var(--color-accent);
+    font-weight: var(--fw-semibold);
+  }
+
   .breadcrumbs ol {
     list-style: none;
     display: flex;
@@ -66,16 +76,6 @@ const { items } = Astro.props;
     gap: 4px;
     color: var(--color-muted);
     text-decoration: none;
-  }
-
-  .breadcrumbs a:hover,
-  .breadcrumbs a:focus-visible {
-    color: var(--color-primary);
-  }
-
-  .breadcrumbs [aria-current='page'] {
-    color: var(--color-primary);
-    font-weight: var(--fw-medium);
   }
 
   .sr-only {

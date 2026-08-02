@@ -5,8 +5,9 @@ import Seo from '../components/common/Seo.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import { withBase } from '../utils/paths';
-import montserratWoff2 from '../assets/fonts/montserrat-latin.woff2';
-import ptSans400Woff2 from '../assets/fonts/pt-sans-latin-400.woff2';
+import lexend400Woff2 from '../assets/fonts/lexend-400.woff2';
+import lexend700Woff2 from '../assets/fonts/lexend-700.woff2';
+import sourceSans400Woff2 from '../assets/fonts/source-sans-3-400.woff2';
 
 interface Props {
   title: string;
@@ -26,7 +27,7 @@ const currentPath = Astro.url.pathname;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#3498db" />
+    <meta name="theme-color" content="#1c1917" />
     <link rel="icon" type="image/png" sizes="32x32" href={withBase('/favicon-32.png')} />
     <link rel="icon" type="image/png" sizes="192x192" href={withBase('/favicon-192.png')} />
     <link rel="apple-touch-icon" href={withBase('/favicon-180.png')} />
@@ -38,8 +39,9 @@ const currentPath = Astro.url.pathname;
       jsonLd={jsonLd}
       noindex={noindex}
     />
-    <link rel="preload" href={montserratWoff2} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={ptSans400Woff2} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={lexend400Woff2} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={lexend700Woff2} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={sourceSans400Woff2} as="font" type="font/woff2" crossorigin />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>

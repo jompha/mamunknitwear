@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import SectionHeading from './SectionHeading.astro';
 import NewsCard from '../portfolio/NewsCard.astro';
 import { withBase } from '../../utils/paths';
+import Icon from '../common/Icon.astro';
 
 interface Props {
   posts: CollectionEntry<'news'>[];
@@ -13,19 +14,26 @@ const { posts } = Astro.props;
 
 <section class="recent-news section">
   <div class="container">
-    <SectionHeading title="Recent News" lead="News and updates from Mamun Knitwear Ltd." />
+    <SectionHeading
+      title="Recent News"
+      lead="News and updates from Mamun Knitwear Ltd."
+      eyebrow="Company updates"
+    />
     <div class="recent-news__grid">
       {posts.slice(0, 3).map((post) => <NewsCard post={post} />)}
     </div>
     <div class="recent-news__more">
-      <a class="btn btn--outline" href={withBase('/news-2/')}>View all news</a>
+      <a class="btn btn--outline" href={withBase('/news-2/')}>
+        View all news
+        <Icon name="arrow-right" size={16} />
+      </a>
     </div>
   </div>
 </section>
 
 <style>
   .recent-news {
-    background: var(--color-white);
+    background: var(--color-background);
   }
 
   .recent-news__grid {

@@ -10,7 +10,6 @@ const NAV_ITEMS: Array<[label: string, href: string]> = [
   ['Digital Printing', '/digital-printing/'],
   ['Sewing', '/sewing-section/'],
   ['News', '/news-2/'],
-  ['Career', '/jobs/'],
   ['Contact us', '/contact-us/'],
 ];
 
@@ -54,7 +53,6 @@ test('every migrated page returns 200', async ({ page }) => {
     '/digital-printing/',
     '/sewing-section/',
     '/news-2/',
-    '/jobs/',
     '/contact-us/',
     '/hello-world/',
     '/chairman-of-mamun-knitwear-ltd-given-cip-status/',

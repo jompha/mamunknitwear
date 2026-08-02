@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
 import PageHeader from '../components/sections/PageHeader.astro';
 import ContactForm from '../components/contact/ContactForm.astro';
+import Icon from '../components/common/Icon.astro';
 import { site } from '../data/site';
 import { withBase } from '../utils/paths';
 import { sisterConcerns } from '../data/site';
@@ -34,6 +35,7 @@ const jsonLd = [
   <Breadcrumbs items={[{ label: 'Contact us' }]} />
   <PageHeader
     title="Contact us"
+    eyebrow="Get in touch"
     lead="We are always happy to hear from you. Reach to us anytime, any moment."
   />
 
@@ -42,14 +44,20 @@ const jsonLd = [
   <section class="section section--alt">
     <div class="container">
       <div class="heading-block">
+        <span class="eyebrow">Our family</span>
         <h2>Our sister concerns</h2>
       </div>
       <ul class="sister-list">
         {
           sisterConcerns.map((concern) => (
             <li class="sister-list__item">
-              <h3>{concern.name}</h3>
-              {concern.note && <p>{concern.note}</p>}
+              <span class="sister-list__icon" aria-hidden="true">
+                <Icon name="building" size={20} />
+              </span>
+              <div>
+                <h3>{concern.name}</h3>
+                {concern.note && <p>{concern.note}</p>}
+              </div>
             </li>
           ))
         }
@@ -59,10 +67,6 @@ const jsonLd = [
 </BaseLayout>
 
 <style>
-  .section--alt {
-    background: var(--color-page-header-bg);
-  }
-
   .sister-list {
     list-style: none;
     padding: 0;
@@ -81,12 +85,35 @@ const jsonLd = [
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--space-5);
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .sister-list__item:hover {
+    border-color: rgb(161 98 7 / 0.3);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sister-list__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: var(--radius-md);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
   }
 
   .sister-list__item h3 {
     font-size: var(--fs-lg);
     margin-bottom: var(--space-2);
-    color: var(--color-primary-dark);
+    color: var(--color-heading);
   }
 
   .sister-list__item p {

@@ -1,40 +1,49 @@
-/* Design tokens — based on the original "Industrial" theme identity of
-   mamunknitwear.com (Montserrat + PT Sans, blue #3498db accent). */
+/* Design tokens — "Premium Black & Gold" identity.
+   Warm near-black brand, refined gold accent, soft warm canvas.
+   Headings: Lexend · Body: Source Sans 3. */
 
 :root {
-  /* Color */
-  --color-primary: #3498db;
-  --color-primary-dark: #2a76a9;
-  --color-primary-soft: #e8f4fb;
-  --color-dark: #171717;
-  --color-navy: #16242e;
-  --color-ink: #252525;
-  --color-text: #5a5a5a;
-  --color-muted: #898989;
-  --color-heading: #252525;
-  --color-page-header-bg: #f8f9f9;
-  --color-page-header-text: #4e4e4e;
-  --color-border: #ececec;
+  /* Brand */
+  --color-primary: #1c1917;
+  --color-primary-dark: #292524;
+  --color-primary-soft: #f5f5f4;
+  --color-accent: #a16207;
+  --color-accent-dark: #854d0e;
+  --color-accent-soft: #f6ecd9;
+  --color-accent-bright: #d9a441;
+
+  /* Neutrals (warm) */
+  --color-background: #fafaf9;
+  --color-foreground: #0c0a09;
+  --color-dark: #17140f;
+  --color-navy: #1c1917;
+  --color-ink: #292524;
+  --color-text: #44403c;
+  --color-muted: #78716c;
+  --color-heading: #1c1917;
+  --color-page-header-bg: #14120f;
+  --color-page-header-text: #d6d3d1;
+  --color-border: #e7e5e4;
   --color-white: #ffffff;
   --color-black: #000000;
-  --color-footer-bg: #171717;
-  --color-footer-text: #a9a9a9;
-  --color-footer-heading: #ffffff;
-  --color-footer-muted: #7f7f7f;
-  --color-copyright: #9c9c9c;
+  --color-footer-bg: #14120f;
+  --color-footer-text: #a8a29e;
+  --color-footer-heading: #fafaf9;
+  --color-footer-muted: #78716c;
+  --color-copyright: #8a8580;
 
   /* Typography */
-  --font-heading: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
-  --font-body: 'PT Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-heading: 'Lexend', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
   --fs-xs: 0.75rem; /* 12px */
   --fs-sm: 0.875rem; /* 14px */
   --fs-md: 1rem; /* 16px */
   --fs-lg: 1.125rem; /* 18px */
   --fs-xl: 1.375rem; /* 22px */
   --fs-2xl: 1.75rem; /* 28px */
-  --fs-3xl: 2rem; /* 32px */
-  --fs-display: 2.5rem; /* 40px */
-  --lh-tight: 1.2;
+  --fs-3xl: 2.25rem; /* 36px */
+  --fs-display: clamp(2.5rem, 5vw, 3.5rem); /* fluid display */
+  --lh-tight: 1.15;
   --lh-body: 1.65;
   --fw-normal: 400;
   --fw-medium: 500;
@@ -56,23 +65,28 @@
   /* Layout */
   --container-max: 1200px;
   --container-pad: clamp(1rem, 4vw, 1.5rem);
-  --section-pad: clamp(2.5rem, 6vw, 4.5rem);
+  --section-pad: clamp(3rem, 7vw, 5.5rem);
   --content-width: 780px;
 
   /* Radii */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
   --radius-full: 999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
-  --shadow-md: 0 4px 14px rgb(0 0 0 / 0.08);
-  --shadow-lg: 0 12px 30px rgb(0 0 0 / 0.12);
+  --shadow-sm: 0 1px 2px rgb(28 25 23 / 0.06);
+  --shadow-md: 0 8px 24px rgb(28 25 23 / 0.1);
+  --shadow-lg: 0 18px 44px rgb(28 25 23 / 0.16);
+  --shadow-accent: 0 8px 20px rgb(161 98 7 / 0.28);
+
+  /* Effects */
+  --blur-header: saturate(1.4) blur(12px);
 
   /* Transitions */
-  --transition: 160ms ease-in-out;
-  --transition-slow: 280ms ease-in-out;
+  --transition: 180ms ease-in-out;
+  --transition-slow: 320ms cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Z-index */
   --z-header: 100;

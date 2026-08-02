@@ -11,9 +11,13 @@ import { historyMilestones } from '../data/home';
 import { certifications } from '../data/logos';
 import { site } from '../data/site';
 import { withBase } from '../utils/paths';
+import Icon from '../components/common/Icon.astro';
 import aboutBuilding from '../assets/images/about-building.jpg';
 
 const team = (await getCollection('team')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const profilePdf = site.profilePdf;
+
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -39,7 +43,8 @@ const jsonLd = [
   <Breadcrumbs items={[{ label: 'About us' }]} />
   <PageHeader
     title="About us"
-    lead="Learn about Mamun Knitwear Ltd., our history and the team behind our quality garments."
+    eyebrow="Our story"
+    lead="A 100% export oriented knit garments manufacturer in Gazipur, Bangladesh — knitting, printing, embroidery and sewing under one roof."
     image={aboutBuilding}
     imageAlt="The Mamun Knitwear Ltd. factory building"
   />
@@ -47,10 +52,21 @@ const jsonLd = [
   <section class="section">
     <div class="container about-intro">
       <div class="heading-block">
+        <span class="eyebrow">Who we are</span>
         <h2>Who we are</h2>
       </div>
       <div class="prose">
         {aboutText.intro.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <div class="about-intro__actions">
+        <a class="btn btn--dark" href={withBase(profilePdf)}>
+          <Icon name="download" size={16} />
+          Download company profile
+        </a>
+        <a class="btn btn--outline" href={withBase('/contact-us/')}>
+          Get in touch
+          <Icon name="arrow-right" size={16} />
+        </a>
       </div>
     </div>
   </section>
@@ -59,6 +75,7 @@ const jsonLd = [
     <div class="container">
       <SectionHeading
         title="Our journey"
+        eyebrow="Milestones"
         lead="Key milestones in the history of Mamun Knitwear Ltd."
       />
       <ol class="timeline">
@@ -81,7 +98,11 @@ const jsonLd = [
 
   <section class="section">
     <div class="container">
-      <SectionHeading title="Our management team" lead="The people who lead Mamun Knitwear Ltd." />
+      <SectionHeading
+        title="Our management team"
+        eyebrow="Leadership"
+        lead="The people who lead Mamun Knitwear Ltd."
+      />
       <div class="team-grid">
         {team.map((member) => <TeamCard member={member} />)}
       </div>
@@ -92,6 +113,7 @@ const jsonLd = [
     <div class="container">
       <SectionHeading
         title="Our certifications"
+        eyebrow="Compliance"
         lead="Certifications and memberships we are proud of."
       />
       <ul class="cert-grid">
@@ -126,8 +148,12 @@ const jsonLd = [
     margin-bottom: var(--space-5);
   }
 
-  .section--alt {
-    background: var(--color-page-header-bg);
+  .about-intro__actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: var(--space-8);
   }
 
   .timeline {
@@ -135,14 +161,15 @@ const jsonLd = [
     padding: 0;
     margin: 0;
     display: grid;
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
 
   .timeline__item {
     display: grid;
-    grid-template-columns: 92px 1fr;
+    grid-template-columns: 96px 1fr;
     gap: var(--space-5);
     align-items: start;
+    position: relative;
   }
 
   @media (max-width: 639px) {
@@ -155,20 +182,32 @@ const jsonLd = [
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-primary);
-    color: var(--color-white);
+    background: var(--color-white);
+    color: var(--color-accent);
+    border: 1px solid var(--color-border);
     font-family: var(--font-heading);
     font-weight: var(--fw-bold);
     font-size: var(--fs-xl);
     border-radius: var(--radius-md);
     min-height: 72px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .timeline__body {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    padding: var(--space-5) var(--space-6);
   }
 
   .timeline__body h3 {
     margin-bottom: var(--space-2);
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
     font-size: var(--fs-lg);
+  }
+
+  .timeline__body p {
+    font-size: var(--fs-sm);
   }
 
   .team-grid {
@@ -201,16 +240,34 @@ const jsonLd = [
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 72px;
+    min-height: 80px;
     background: var(--color-white);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--space-4);
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .cert-grid__item:hover {
+    border-color: rgb(161 98 7 / 0.35);
+    box-shadow: var(--shadow-sm);
   }
 
   .cert-grid__item img {
     max-height: 52px;
     width: auto;
     object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.75;
+    transition:
+      filter var(--transition),
+      opacity var(--transition);
+  }
+
+  .cert-grid__item:hover img {
+    filter: grayscale(0);
+    opacity: 1;
   }
 </style>

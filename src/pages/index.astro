@@ -5,16 +5,27 @@ import Hero from '../components/sections/Hero.astro';
 import FeaturesGrid from '../components/sections/FeaturesGrid.astro';
 import LogoStrip from '../components/sections/LogoStrip.astro';
 import RecentNews from '../components/sections/RecentNews.astro';
+import CtaSection from '../components/sections/CtaSection.astro';
+import Icon from '../components/common/Icon.astro';
 import { site } from '../data/site';
 import { withBase } from '../utils/paths';
 import { homeFeatures } from '../data/home';
 import { services } from '../data/services';
-import { clients } from '../data/logos';
+import { clients, certifications } from '../data/logos';
 import heroImage from '../assets/images/hero-factory.jpg';
+import aboutBuilding from '../assets/images/about-building.jpg';
 
 const posts = (await getCollection('news')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const facts = [
+  { value: '2013', label: 'Established' },
+  { value: '110+', label: 'Knitting machines' },
+  { value: '18', label: 'Sewing lines' },
+  { value: '843', label: 'Sewing machines' },
+];
+
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -41,18 +52,68 @@ const jsonLd = [
     text={site.tagline}
     ctaLabel="Discover our services"
     ctaHref="/services/"
+    secondaryCtaLabel="About our company"
+    secondaryCtaHref="/about-us-2/"
     image={heroImage}
     imageAlt="Exterior view of the Mamun Knitwear Ltd. factory building"
+    chips={[
+      { label: '100% Export Oriented', icon: 'globe' },
+      { label: 'BSCI · OEKO-TEX · WRAP Certified', icon: 'shield-check' },
+      { label: 'Est. 2013 · Gazipur, Bangladesh', icon: 'map-pin' },
+    ]}
   />
 
-  <FeaturesGrid title="Why choose us" lead={site.tagline} features={homeFeatures} />
+  <section class="intro section">
+    <div class="container intro__grid">
+      <div class="intro__media">
+        <img
+          src={aboutBuilding.src}
+          alt="The Mamun Knitwear Ltd. factory building"
+          width={aboutBuilding.width}
+          height={aboutBuilding.height}
+          loading="lazy"
+        />
+      </div>
+      <div class="intro__body">
+        <span class="eyebrow">About Mamun Knitwear</span>
+        <h2>From yarn to finished garment — under one roof</h2>
+        <p>
+          Mamun Knitwear Ltd. is a 100% export oriented knit garments manufacturer in Gazipur,
+          Bangladesh. Our own building surrounds an area of 2,00,000 sq. ft., housing knitting,
+          printing, embroidery and sewing facilities that serve the world’s famous clothing brands.
+        </p>
+        <ul class="intro__points">
+          <li><Icon name="check-circle" size={18} /> Composite facilities in a single location</li>
+          <li><Icon name="check-circle" size={18} /> Export quality assured at every step</li>
+          <li>
+            <Icon name="check-circle" size={18} /> Environment friendly production with full-time ETP
+          </li>
+        </ul>
+        <a class="btn btn--dark" href={withBase('/about-us-2/')}>
+          Learn more about us
+          <Icon name="arrow-right" size={16} />
+        </a>
+      </div>
+    </div>
+    <div class="container intro__facts">
+      {
+        facts.map((fact) => (
+          <div class="intro__fact">
+            <span class="intro__fact-value">{fact.value}</span>
+            <span class="intro__fact-label">{fact.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 
-  <section class="services-preview section">
+  <section class="services-preview section section--alt">
     <div class="container">
       <div class="heading-block">
+        <span class="eyebrow">Our capabilities</span>
         <h2>What we do</h2>
         <p class="heading-block__lead">
-          From yarn to finished garment — knitting, printing, embroidery and sewing under one roof.
+          Integrated manufacturing — knitting, sample, cutting, sewing, finishing and embroidery.
         </p>
       </div>
       <ul class="services-preview__grid">
@@ -60,17 +121,22 @@ const jsonLd = [
           services.map((service) => (
             <li class="services-preview__card">
               <a href={service.href}>
-                <img
-                  src={service.image.src}
-                  alt={service.imageAlt}
-                  width={service.image.width}
-                  height={service.image.height}
-                  loading="lazy"
-                />
+                <div class="services-preview__media">
+                  <img
+                    src={service.image.src}
+                    alt={service.imageAlt}
+                    width={service.image.width}
+                    height={service.image.height}
+                    loading="lazy"
+                  />
+                </div>
                 <div class="services-preview__body">
                   <h3>{service.title}</h3>
                   <p>{service.summary}</p>
-                  <span class="services-preview__link">Learn more</span>
+                  <span class="services-preview__link">
+                    Learn more
+                    <Icon name="arrow-right" size={15} />
+                  </span>
                 </div>
               </a>
             </li>
@@ -80,14 +146,151 @@ const jsonLd = [
     </div>
   </section>
 
-  <LogoStrip title="Our trusted partners" items={clients} />
+  <FeaturesGrid
+    title="Why choose us"
+    eyebrow="Our commitment"
+    lead="The values that guide every order we take and every garment we ship."
+    features={homeFeatures}
+  />
+
+  <LogoStrip
+    title="Our trusted partners"
+    eyebrow="Client brands"
+    lead="World-famous clothing brands that trust our manufacturing."
+    items={clients}
+  />
+
+  <section class="certs section">
+    <div class="container">
+      <div class="heading-block">
+        <span class="eyebrow">Compliance</span>
+        <h2>Certifications & memberships</h2>
+        <p class="heading-block__lead">
+          Audited and certified to international compliance standards.
+        </p>
+      </div>
+      <ul class="certs__grid">
+        {
+          certifications.map((cert) => (
+            <li class="certs__item">
+              <img
+                src={cert.image.src}
+                alt={cert.alt}
+                width={cert.image.width}
+                height={cert.image.height}
+                loading="lazy"
+              />
+              <span class="sr-only">{cert.name}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 
   <RecentNews posts={posts} />
+
+  <CtaSection
+    title="Ready to build your next collection?"
+    text="Talk to our manufacturing team about your knitwear requirements — from sampling to shipment."
+    ctaLabel="Contact us"
+    ctaHref="/contact-us/"
+  />
 </BaseLayout>
 
 <style>
+  .intro {
+    background: var(--color-background);
+  }
+
+  .intro__grid {
+    display: grid;
+    gap: var(--space-8);
+    align-items: center;
+    margin-bottom: var(--space-8);
+  }
+
+  @media (min-width: 900px) {
+    .intro__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .intro__media img {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .intro__body h2 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    margin-bottom: var(--space-4);
+  }
+
+  .intro__body > p {
+    margin-bottom: var(--space-5);
+    color: var(--color-text);
+  }
+
+  .intro__points {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .intro__points li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    color: var(--color-ink);
+  }
+
+  .intro__points svg {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .intro__facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-7);
+  }
+
+  @media (min-width: 900px) {
+    .intro__facts {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .intro__fact {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .intro__fact-value {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: var(--fw-bold);
+    color: var(--color-accent);
+    line-height: 1.2;
+  }
+
+  .intro__fact-label {
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
   .services-preview {
-    background: var(--color-page-header-bg);
+    background: var(--color-primary-soft);
   }
 
   .services-preview__grid {
@@ -115,13 +318,15 @@ const jsonLd = [
     border-radius: var(--radius-md);
     overflow: hidden;
     transition:
-      transform var(--transition),
-      box-shadow var(--transition);
+      transform var(--transition-slow),
+      box-shadow var(--transition-slow),
+      border-color var(--transition-slow);
   }
 
   .services-preview__card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
+    border-color: rgb(161 98 7 / 0.25);
   }
 
   .services-preview__card a {
@@ -129,12 +334,22 @@ const jsonLd = [
     flex-direction: column;
     height: 100%;
     text-decoration: none;
+    color: inherit;
   }
 
-  .services-preview__card img {
+  .services-preview__media {
+    overflow: hidden;
+  }
+
+  .services-preview__media img {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .services-preview__card:hover .services-preview__media img {
+    transform: scale(1.04);
   }
 
   .services-preview__body {
@@ -156,8 +371,79 @@ const jsonLd = [
   }
 
   .services-preview__link {
-    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-accent);
     font-weight: var(--fw-semibold);
     font-size: var(--fs-sm);
+  }
+
+  .services-preview__link svg {
+    transition: transform var(--transition);
+  }
+
+  .services-preview__card:hover .services-preview__link svg {
+    transform: translateX(4px);
+  }
+
+  .certs {
+    background: var(--color-background);
+  }
+
+  .certs__grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    align-items: center;
+  }
+
+  @media (min-width: 640px) {
+    .certs__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .certs__grid {
+      grid-template-columns: repeat(8, 1fr);
+    }
+  }
+
+  .certs__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 84px;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .certs__item:hover {
+    border-color: rgb(161 98 7 / 0.35);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .certs__item img {
+    max-height: 48px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.75;
+    transition:
+      filter var(--transition),
+      opacity var(--transition);
+  }
+
+  .certs__item:hover img {
+    filter: grayscale(0);
+    opacity: 1;
   }
 </style>

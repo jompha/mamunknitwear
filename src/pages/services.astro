@@ -3,8 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
 import PageHeader from '../components/sections/PageHeader.astro';
 import CtaSection from '../components/sections/CtaSection.astro';
+import Icon from '../components/common/Icon.astro';
 import { services } from '../data/services';
 import { site } from '../data/site';
+import { withBase } from '../utils/paths';
 import svcKnitting from '../assets/images/svc-knitting.jpg';
 
 const jsonLd = [
@@ -30,6 +32,7 @@ const jsonLd = [
   <Breadcrumbs items={[{ label: 'Services' }]} />
   <PageHeader
     title="Our services"
+    eyebrow="What we do"
     lead="Integrated manufacturing facilities for export quality knit garments."
     image={svcKnitting}
     imageAlt="Knitting machines at Mamun Knitwear Ltd."
@@ -39,7 +42,7 @@ const jsonLd = [
     <div class="container">
       <ul class="services-list">
         {
-          services.map((service) => (
+          services.map((service, index) => (
             <li class="service-row">
               <a href={service.href} class="service-row__card">
                 <div class="service-row__media">
@@ -52,9 +55,15 @@ const jsonLd = [
                   />
                 </div>
                 <div class="service-row__body">
+                  <span class="service-row__index" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
                   <h2>{service.title}</h2>
                   <p>{service.summary}</p>
-                  <span class="service-row__link">Read more</span>
+                  <span class="service-row__link">
+                    Read more
+                    <Icon name="arrow-right" size={15} />
+                  </span>
                 </div>
               </a>
             </li>
@@ -82,23 +91,25 @@ const jsonLd = [
 
   .service-row__card {
     display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: var(--space-6);
+    grid-template-columns: 340px 1fr;
+    gap: 0;
     align-items: stretch;
     background: var(--color-white);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     overflow: hidden;
     text-decoration: none;
     transition:
-      transform var(--transition),
-      box-shadow var(--transition);
+      transform var(--transition-slow),
+      box-shadow var(--transition-slow),
+      border-color var(--transition-slow);
   }
 
   .service-row__card:hover,
   .service-row__card:focus-visible {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
+    border-color: rgb(161 98 7 / 0.25);
   }
 
   @media (max-width: 860px) {
@@ -107,11 +118,20 @@ const jsonLd = [
     }
   }
 
+  .service-row__media {
+    overflow: hidden;
+  }
+
   .service-row__media img {
     width: 100%;
     height: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .service-row__card:hover .service-row__media img {
+    transform: scale(1.04);
   }
 
   @media (min-width: 861px) {
@@ -122,17 +142,24 @@ const jsonLd = [
   }
 
   .service-row__body {
-    padding: var(--space-6);
+    padding: var(--space-7);
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
     align-items: flex-start;
+    position: relative;
+  }
+
+  .service-row__index {
+    font-family: var(--font-heading);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bold);
+    color: var(--color-accent);
+    letter-spacing: 0.1em;
   }
 
   .service-row__body h2 {
     color: var(--color-heading);
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
     font-size: var(--fs-xl);
   }
 
@@ -142,8 +169,19 @@ const jsonLd = [
   }
 
   .service-row__link {
-    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-accent);
     font-weight: var(--fw-semibold);
     font-size: var(--fs-sm);
+  }
+
+  .service-row__link svg {
+    transition: transform var(--transition);
+  }
+
+  .service-row__card:hover .service-row__link svg {
+    transform: translateX(4px);
   }
 </style>

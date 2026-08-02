@@ -10,6 +10,7 @@ const mailto = `mailto:${site.publicEmail}`;
   <div class="container">
     <div class="contact-form-section__grid">
       <div class="contact-info-box">
+        <span class="eyebrow">Contact information</span>
         <h2>Do Contact Us</h2>
         <p>
           We are always happy and eager to hear from you. Reach to us anytime, any moment — we would
@@ -179,21 +180,26 @@ const mailto = `mailto:${site.publicEmail}`;
   }
 
   .contact-info-box h2 {
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
     margin-bottom: var(--space-4);
+    color: var(--color-white);
   }
 
   .contact-info-box > p {
     margin-bottom: var(--space-5);
+    color: var(--color-page-header-text);
+  }
+
+  .contact-info-box {
+    background:
+      radial-gradient(60% 100% at 100% 0%, rgb(161 98 7 / 0.22) 0%, transparent 60%),
+      var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
   }
 
   .contact-info-box__list {
     font-style: normal;
-    background: var(--color-page-header-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-5);
+    margin-top: var(--space-5);
   }
 
   .contact-info-box__list p {
@@ -202,28 +208,39 @@ const mailto = `mailto:${site.publicEmail}`;
     margin-bottom: var(--space-4);
     font-size: var(--fs-sm);
     max-width: none;
+    color: var(--color-footer-text);
   }
 
   .contact-info-box__list p:last-child {
     margin-bottom: 0;
   }
 
+  .contact-info-box__list a {
+    color: var(--color-footer-text);
+  }
+
+  .contact-info-box__list a:hover,
+  .contact-info-box__list a:focus-visible {
+    color: var(--color-accent-bright);
+  }
+
   .contact-info-box__icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     flex-shrink: 0;
     border-radius: var(--radius-full);
-    background: var(--color-primary-soft);
-    color: var(--color-primary);
+    background: rgb(255 255 255 / 0.08);
+    color: var(--color-accent-bright);
+    border: 1px solid rgb(255 255 255 / 0.12);
   }
 
   .contact-form-wrap {
     background: var(--color-white);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     padding: clamp(1.25rem, 3vw, 2.5rem);
     box-shadow: var(--shadow-sm);
   }
@@ -236,13 +253,15 @@ const mailto = `mailto:${site.publicEmail}`;
   .form-group label {
     display: block;
     margin-bottom: var(--space-2);
-    font-weight: var(--fw-medium);
+    font-weight: var(--fw-semibold);
     color: var(--color-ink);
+    font-size: var(--fs-sm);
   }
 
   .form-group label span {
     color: var(--color-muted);
     font-size: var(--fs-xs);
+    font-weight: var(--fw-normal);
   }
 
   .form-group input,
@@ -251,17 +270,23 @@ const mailto = `mailto:${site.publicEmail}`;
     padding: var(--space-3) var(--space-4);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
-    background: var(--color-white);
+    background: var(--color-background);
     transition:
       border-color var(--transition),
       box-shadow var(--transition);
   }
 
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--color-muted);
+  }
+
   .form-group input:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgb(52 152 219 / 0.25);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgb(161 98 7 / 0.18);
+    background: var(--color-white);
   }
 
   .form-group--hp {
@@ -274,7 +299,7 @@ const mailto = `mailto:${site.publicEmail}`;
 
   .form-status {
     font-size: var(--fs-sm);
-    color: var(--color-primary-dark);
+    color: var(--color-accent-dark);
   }
 
   .contact-form__fallback {
