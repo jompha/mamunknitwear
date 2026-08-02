@@ -2,8 +2,8 @@
 
 ## Live URL
 
-- **Production:** <https://jompha.github.io/mamunknitwear>
-- **Source repo:** `jompha/mamunknitwear` (branch `main`)
+- **Production:** <https://mmknit.github.io/mamunknitwear>
+- **Source repo:** `mmknit/mamunknitwear` (branch `main`)
 - **Original site (being replaced):** <https://mamunknitwear.com>
 
 ## How it works
@@ -11,7 +11,7 @@
 `astro.config.mjs` sets:
 
 ```js
-site: 'https://jompha.github.io',
+site: 'https://mmknit.github.io',
 base: '/mamunknitwear',
 trailingSlash: 'always',
 ```
@@ -29,7 +29,7 @@ Every internal link goes through the `withBase()` helper in
 
 ## First-time setup (owner action required)
 
-1. Create the GitHub repo `jompha/mamunknitwear` (empty, `main` branch).
+1. Create the GitHub repo `mmknit/mamunknitwear` (empty, `main` branch).
 2. In **Settings → Pages**, set Source to **GitHub Actions**.
 3. Authenticate the GitHub CLI locally so pushes work:
    `gh auth login`

@@ -18,6 +18,6 @@ export default defineConfig({
     ],
   },
   define: {
-    'import.meta.env.SITE': JSON.stringify('https://jompha.github.io'),
+    'import.meta.env.SITE': JSON.stringify('https://mmknit.github.io'),
   },
 });

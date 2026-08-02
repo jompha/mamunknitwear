@@ -60,4 +60,4 @@ calendar-ish minor versions (`1.0.0`, `1.1.0`, …).
 ## [1.0.0] — planned initial release
 
 Placeholder for the first tagged release once the site is published at
-<https://jompha.github.io/mamunknitwear>.
+<https://mmknit.github.io/mamunknitwear>.

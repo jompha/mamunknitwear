@@ -4,7 +4,7 @@ A fast, dependency-light static rebuild of <https://mamunknitwear.com> — the
 website of **Mamun Knitwear Ltd.**, a 100% export-oriented knit garments
 manufacturer in Gazipur, Bangladesh. The original WordPress/PHP site has been
 migrated to [Astro](https://astro.build) and is published on GitHub Pages at
-<https://jompha.github.io/mamunknitwear>.
+<https://mmknit.github.io/mamunknitwear>.
 
 ## Highlights
 

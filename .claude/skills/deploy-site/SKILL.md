@@ -7,9 +7,9 @@ description: Use when deploying or preparing a deployment of the Mamun Knitwear 
 
 ## How deployment works
 
-The repo is `jompha/mamunknitwear` and the site publishes to
-`https://jompha.github.io/mamunknitwear`. Astro is configured in
-`astro.config.mjs` with `site: 'https://jompha.github.io'` and
+The repo is `mmknit/mamunknitwear` and the site publishes to
+`https://mmknit.github.io/mamunknitwear`. Astro is configured in
+`astro.config.mjs` with `site: 'https://mmknit.github.io'` and
 `base: '/mamunknitwear'`, so URLs are prefix-aware and no `--base` flag is
 needed at build time.
 
@@ -28,7 +28,7 @@ enabled in the repo settings with **GitHub Actions** as the source.
 
 ## First-time setup (owner action required)
 
-- The repo must exist at `jompha/mamunknitwear` (empty `main` branch).
+- The repo must exist at `mmknit/mamunknitwear` (empty `main` branch).
 - GitHub Pages: Settings → Pages → Source: **GitHub Actions**.
 - GH CLI (`gh`) must be authenticated on the machine: `gh auth login`.
 
