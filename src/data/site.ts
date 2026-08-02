@@ -10,7 +10,7 @@ export const site = {
   locale: 'en_US',
   owner: 'Md Mahfujur Rahman',
   ownerTitle: 'Manager, IT',
-  ownerEmail: 'robin@mmknitwear.com',
+  ownerEmail: 'info@mmknitwear.com',
   publicEmail: 'info@mamunknitwear.com',
   phone: '+880 9666 791791',
   phoneRaw: '+8809666791791',
