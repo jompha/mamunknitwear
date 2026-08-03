@@ -6,6 +6,7 @@ import CtaSection from '../components/sections/CtaSection.astro';
 import Icon from '../components/common/Icon.astro';
 import { services } from '../data/services';
 import { site } from '../data/site';
+import { withBase } from '../utils/paths';
 import svcKnitting from '../assets/images/svc-knitting.jpg';
 
 const jsonLd = [
@@ -16,15 +17,22 @@ const jsonLd = [
     itemListElement: services.map((service, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      name: service.title,
+      item: {
+        '@type': 'Service',
+        name: service.title,
+        description: service.summary,
+        serviceType: service.title,
+        provider: { '@type': 'Organization', name: site.name },
+        url: new URL(withBase(service.href), Astro.site).toString(),
+      },
     })),
   },
 ];
 ---
 
 <BaseLayout
-  title="Services"
-  description="Explore the services of Mamun Knitwear Ltd. â€” knitting, sample, cutting, sewing, finishing and embroidery."
+  title="Knit Garment Manufacturing Services"
+  description="Knit garment manufacturing services from Mamun Knitwear Ltd. — knitting, sample, cutting, sewing, finishing and embroidery in Gazipur, Bangladesh."
   canonicalPath="/services/"
   jsonLd={jsonLd}
 >

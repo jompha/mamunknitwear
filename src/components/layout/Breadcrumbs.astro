@@ -12,6 +12,20 @@ interface Props {
 }
 
 const { items } = Astro.props;
+
+const crumbs = [{ label: 'Home', href: '/' }, ...items];
+
+// Emit BreadcrumbList structured data so search engines can show breadcrumbs.
+const breadcrumbList = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((crumb, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: crumb.label,
+    ...(crumb.href ? { item: new URL(withBase(crumb.href), Astro.site).toString() } : {}),
+  })),
+};
 ---
 
 <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -32,6 +46,8 @@ const { items } = Astro.props;
     }
   </ol>
 </nav>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbList)} />
 
 <style>
   .breadcrumbs {

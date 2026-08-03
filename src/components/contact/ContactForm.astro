@@ -13,8 +13,8 @@ const mailto = `mailto:${site.publicEmail}`;
         <span class="eyebrow">Contact information</span>
         <h2>Do Contact Us</h2>
         <p>
-          We are always happy and eager to hear from you. Reach to us anytime, any moment â€” we
-          would love to have some conversation and build a great relationship ahead.
+          We are always happy and eager to hear from you. Reach to us anytime, any moment — we would
+          love to have some conversation and build a great relationship ahead.
         </p>
         <address class="contact-info-box__list">
           <p>
@@ -146,7 +146,7 @@ const mailto = `mailto:${site.publicEmail}`;
     }
 
     event.preventDefault();
-    if (status) status.textContent = 'Sendingâ€¦';
+    if (status) status.textContent = 'Sending…';
     fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -154,7 +154,7 @@ const mailto = `mailto:${site.publicEmail}`;
     })
       .then((res) => {
         if (res.ok && status) {
-          status.textContent = 'Thank you â€” your message has been sent.';
+          status.textContent = 'Thank you — your message has been sent.';
           form.reset();
         } else if (status) {
           status.textContent = 'Sorry, sending failed. Please email us directly instead.';

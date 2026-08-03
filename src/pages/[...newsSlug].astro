@@ -33,6 +33,7 @@ const jsonLd = [
     headline: title,
     description: excerpt,
     datePublished: pubDate.toISOString(),
+    dateModified: pubDate.toISOString(),
     image: coverImage.src,
     author: { '@type': 'Organization', name: site.name },
     publisher: { '@type': 'Organization', name: site.name },
