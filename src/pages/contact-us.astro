@@ -39,7 +39,61 @@ const jsonLd = [
     lead="We are always happy to hear from you. Reach to us anytime, any moment."
   />
 
-  <ContactForm />
+  <section class="section contact-info-section">
+    <div class="container">
+      <div class="contact-info__grid">
+        <div class="contact-info-box">
+          <span class="eyebrow">Contact information</span>
+          <h2>Do Contact Us</h2>
+          <p>
+            We are always happy and eager to hear from you. Reach to us anytime, any moment — we
+            would love to have some conversation and build a great relationship ahead.
+          </p>
+          <address class="contact-info-box__list">
+            <p>
+              <span class="contact-info-box__icon"><Icon name="map-pin" size={16} /></span>
+              <span>{site.name}<br />{site.address.line1}, {site.address.line2}, Bangladesh</span>
+            </p>
+            <p>
+              <span class="contact-info-box__icon"><Icon name="phone" size={16} /></span>
+              <span
+                ><a href={`tel:${site.phoneRaw}`}>{site.phone}</a><br /><a
+                  href={`tel:${site.phoneAltRaw}`}>{site.phoneAlt}</a
+                ></span
+              >
+            </p>
+            <p>
+              <span class="contact-info-box__icon"><Icon name="clock" size={16} /></span>
+              <span>Fax: {site.fax}</span>
+            </p>
+            <p>
+              <span class="contact-info-box__icon"><Icon name="mail" size={16} /></span>
+              <span><a href={`mailto:${site.publicEmail}`}>{site.publicEmail}</a></span>
+            </p>
+            <p>
+              <span class="contact-info-box__icon"><Icon name="globe" size={16} /></span>
+              <span
+                ><a href={site.website} target="_blank" rel="noopener noreferrer"
+                  >{site.website.replace('https://', '')}</a
+                ></span
+              >
+            </p>
+          </address>
+        </div>
+
+        <div class="contact-map">
+          <h2>Find us on the map</h2>
+          <p>Mamun Knitwear Ltd, Ambag Rd, Konabari, Nilnagar, Gazipur, Bangladesh.</p>
+          <iframe
+            src="https://www.google.com/maps?q=Mamun%20Knitwear%20Ltd%2C%20Ambag%20Rd%2C%20Konabari&output=embed&z=16"
+            title="Google Map — Mamun Knitwear Ltd, Ambag Rd, Konabari"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="section section--alt">
     <div class="container">
@@ -64,9 +118,114 @@ const jsonLd = [
       </ul>
     </div>
   </section>
+
+  <ContactForm />
 </BaseLayout>
 
 <style>
+  /* ── contact info + map ─────────────────────────────── */
+  .contact-info__grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 900px) {
+    .contact-info__grid {
+      grid-template-columns: 1fr 1.4fr;
+      align-items: stretch;
+    }
+  }
+
+  .contact-info-box {
+    background:
+      radial-gradient(60% 100% at 100% 0%, rgb(2 132 199 / 0.22) 0%, transparent 60%),
+      var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-info-box h2 {
+    margin-bottom: var(--space-4);
+    color: var(--color-white);
+  }
+
+  .contact-info-box > p {
+    margin-bottom: var(--space-5);
+    color: var(--color-page-header-text);
+  }
+
+  .contact-info-box__list {
+    font-style: normal;
+    margin-top: var(--space-5);
+  }
+
+  .contact-info-box__list p {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    font-size: var(--fs-sm);
+    max-width: none;
+    color: var(--color-footer-text);
+  }
+
+  .contact-info-box__list p:last-child {
+    margin-bottom: 0;
+  }
+
+  .contact-info-box__list a {
+    color: var(--color-footer-text);
+  }
+
+  .contact-info-box__list a:hover,
+  .contact-info-box__list a:focus-visible {
+    color: var(--color-accent-bright);
+  }
+
+  .contact-info-box__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: var(--radius-full);
+    background: rgb(255 255 255 / 0.08);
+    color: var(--color-accent-bright);
+    border: 1px solid rgb(255 255 255 / 0.12);
+  }
+
+  .contact-map {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-map h2 {
+    margin-bottom: var(--space-2);
+    color: var(--color-heading);
+  }
+
+  .contact-map p {
+    margin-bottom: var(--space-4);
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+  }
+
+  .contact-map iframe {
+    flex: 1;
+    width: 100%;
+    min-height: 320px;
+    border: 0;
+    border-radius: var(--radius-md);
+  }
+
+  /* ── sister concerns ──────────────────────────────── */
   .sister-list {
     list-style: none;
     padding: 0;

@@ -5,7 +5,6 @@ import Hero from '../components/sections/Hero.astro';
 import FeaturesGrid from '../components/sections/FeaturesGrid.astro';
 import LogoStrip from '../components/sections/LogoStrip.astro';
 import RecentNews from '../components/sections/RecentNews.astro';
-import FaqSection from '../components/sections/FaqSection.astro';
 import CtaSection from '../components/sections/CtaSection.astro';
 import Icon from '../components/common/Icon.astro';
 import { site } from '../data/site';
@@ -13,7 +12,6 @@ import { withBase } from '../utils/paths';
 import { homeFeatures } from '../data/home';
 import { services } from '../data/services';
 import { clients, certifications } from '../data/logos';
-import { faqItems } from '../data/faq';
 import heroImage from '../assets/images/hero-factory.jpg';
 import aboutBuilding from '../assets/images/about-building.jpg';
 
@@ -65,15 +63,6 @@ const jsonLd = [
         availableLanguage: 'English',
       },
     ],
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
   },
 ];
 ---
@@ -244,8 +233,6 @@ const jsonLd = [
   </section>
 
   <RecentNews posts={posts} />
-
-  <FaqSection />
 
   <CtaSection
     title="Ready to build your next collection?"
